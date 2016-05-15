@@ -1,6 +1,7 @@
 #get_byte = lambda message, byte: message[byte*2:byte*2+2]
 #get_bit = lambda byte, bit: (byte & (2**bit)) >> bit
-#hex_to_int16(2ByteMessage)		Converts little endian message of 2 bytes into a signed int16
+#hex_to_int16(2ByteMessage)		Converts little endian message of 2 bytes into a SIGNED int16
+#					If you need unsigned. use int(byteMessage, N)
 
 
 {
@@ -65,7 +66,7 @@
 ],
 
 #GLVBMS
-
+#Mikael Kvalvær
 '620': lambda data: [
     ('Voltage_0' , int(get_byte(data, 0) + get_byte(data, 1), 16)),
     ('Voltage_1' , int(get_byte(data, 2) + get_byte(data, 3), 16)),
@@ -105,6 +106,7 @@
     ('Balance_settings' , int(get_byte(data, 2) + get_byte(data, 3), 16))
 ],
 
+#Simen
 #R16 mechanical data 1
 '290': lambda data: [
     ('R16[1]_current_speed' 	, struct.unpack('>i', (('FFFF' if (int(get_byte(data, 1), 16) & 1 << 7) else '0000') + get_byte(data, 1) + get_byte(data, 0)).decode('hex'))[0] / 100),
