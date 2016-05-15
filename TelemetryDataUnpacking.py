@@ -86,11 +86,11 @@
 ],   
 
 '624': lambda data: [
-    ('GLVBMS_temp_4', int(data, 16))
+    ('GLVBMS_temp_4', int(get_byte(data, 0) + get_byte(data, 1), 16))
 ],
 
 '625': lambda data: [
-    ('GLVBMS_current', int(data, 16))
+    ('GLVBMS_current', int(get_byte(data, 1) + get_byte(data, 0), 16))
 ],
 
 '626': lambda data: [
