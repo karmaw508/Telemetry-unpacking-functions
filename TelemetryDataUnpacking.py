@@ -284,5 +284,8 @@
 	('STATUS_ATTITUDE'	 	, int(get_byte(data, 0) + get_byte(data,1), 16)), 
 	('STATUS_INS'			, int(get_byte(data, 2), 8))
 ],
+
+
+
 }
 
