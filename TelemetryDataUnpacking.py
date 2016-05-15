@@ -1,4 +1,4 @@
-#get_byte = lambda message, byte: message[byte*2:byte*2+2]
+﻿#get_byte = lambda message, byte: message[byte*2:byte*2+2]
 #get_bit = lambda byte, bit: (byte & (2**bit)) >> bit
 #hex_to_int16(2ByteMessage)		Converts little endian message of 2 bytes into a SIGNED int16
 #					If you need unsigned. use int(byteMessage, N), but be wary of endianess
@@ -6,7 +6,7 @@
 
 {
 #ADC_sensor_inputs
-'400': lambda data: [baef
+'400': lambda data: [
     ('Damper_position_FL' , int(get_byte(data, 1) + get_byte(data, 0), 16)/10),
     ('Damper_rate_FL' , int(get_byte(data, 3) + get_byte(data, 2), 16)/10),
 ],
