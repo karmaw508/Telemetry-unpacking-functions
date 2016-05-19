@@ -60,7 +60,7 @@
     ('Temperature_coolant_right' , int(get_byte(data, 1) + get_byte(data, 0), 16)/10)
 ],
 
-'421': lambda data: [
+'414': lambda data: [
     ('Brake_pressure_left' , int(get_byte(data, 1) + get_byte(data, 0), 16)/10),
     ('Brake_pressure_right' , int(get_byte(data, 3) + get_byte(data, 2), 16)/10)
 ],
