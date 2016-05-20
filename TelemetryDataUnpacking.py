@@ -320,7 +320,7 @@
 '466': lambda data: [
     ('GLV_minTemp'       , int(get_byte(data,1) + get_byte(data,0),16)  / 100.0),
     ('GLV_maxTemp'       , int(get_byte(data,3) + get_byte(data,2),16)  / 100.0),
-    ('GLV_current'       , int(get_byte(data,5) + get_byte(data,4),16)  / 100.0),
+    ('GLV_current'       , int(get_byte(data,7) + get_byte(data,6),16)  / 1000.0),
 ],
 
 
