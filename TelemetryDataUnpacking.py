@@ -105,9 +105,35 @@
     ('Max_temperature' , int(get_byte(data, 0) + get_byte(data, 1), 16)),
     ('Balance_settings' , int(get_byte(data, 2) + get_byte(data, 3), 16))
 ],
-
-#BMS VOLTAGES
+#BMS
 #Sondre Ninive Andersen
+'440': lambda data: [
+	('Max_Cell_Voltage',			int(get_byte(data, 0) + get_byte(data, 1), 16) / 10),
+	('Average_Cell_Voltage',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10),
+	('Min_Cell_Voltage',			int(get_byte(data, 4) + get_byte(data, 5), 16) / 10),
+	('Max_Voltage_ID',			int(get_byte(data, 6), 8)),
+	('Min_Voltage_ID',			int(get_byte(data, 7), 8))
+],
+
+'441': lambda data: [
+	('Max_Cell_Temperature',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10),
+	('Average_Cell_Temperature',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10),
+	('Min_Cell_Temperature',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10),
+	('Max_Temperature_ID',			int(get_byte(data, 6), 8)),
+	('Min_Temperature_ID',			int(get_byte(data, 7), 8))
+],
+
+'443': lambda data: [
+	('Tractive_System_Voltage',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10),
+	('Tractive_System_Current',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10),
+	('Tractive_System_Power',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10),
+	('State_of_Charge',			int(get_byte(data, 6) + get_byte(data, 7), 16) / 10)
+],
+
+'444': lambda data: [
+	('BMS_Error_Flags',			int(get_byte(data, 0) + get_byte(data, 1), 16))
+],
+
 '500': lambda data: [
 	('BMS_Cell_Voltage_0',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10000),
 	('BMS_Cell_Voltage_1',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10000),
