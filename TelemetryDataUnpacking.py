@@ -289,38 +289,38 @@
 
 #GLVBMS, VOLTAGES
 '460': lambda data: [
-    ('GLV_vtg0'       , hex_to_int16(get_byte(data, 1) + get_byte(data, 0)) / 10000), 
-    ('GLV_vtg1'       , hex_to_int16(get_byte(data, 3) + get_byte(data, 2)) / 10000),
-    ('GLV_vtg2'       , hex_to_int16(get_byte(data, 5) + get_byte(data, 4)) / 10000),
-    ('GLV_vtg3'       , hex_to_int16(get_byte(data, 7) + get_byte(data, 6)) / 10000)
+    ('GLV_vtg0'       , hex_to_int16(get_byte(data, 0) + get_byte(data, 1)) / 10000), 
+    ('GLV_vtg1'       , hex_to_int16(get_byte(data, 2) + get_byte(data, 3)) / 10000),
+    ('GLV_vtg2'       , hex_to_int16(get_byte(data, 4) + get_byte(data, 5)) / 10000),
+    ('GLV_vtg3'       , hex_to_int16(get_byte(data, 6) + get_byte(data, 7)) / 10000)
 ],
 '461': lambda data: [
-    ('GLV_vtg4'       , hex_to_int16(get_byte(data, 1) + get_byte(data, 0)) / 10000), 
-    ('GLV_vtg5'       , hex_to_int16(get_byte(data, 3) + get_byte(data, 2)) / 10000),
+    ('GLV_vtg4'       , hex_to_int16(get_byte(data, 0) + get_byte(data, 1)) / 10000), 
+    ('GLV_vtg5'       , hex_to_int16(get_byte(data, 2) + get_byte(data, 3)) / 10000),
 ],
 
 '462': lambda data: [
-    ('GLV_tmp0'       , hex_to_int16(get_byte(data, 1) + get_byte(data, 0)) / 100), 
-    ('GLV_vmp1'       , hex_to_int16(get_byte(data, 3) + get_byte(data, 2)) / 100),
-    ('GLV_tmp2'       , hex_to_int16(get_byte(data, 5) + get_byte(data, 4)) / 100),
-    ('GLV_tmp3'       , hex_to_int16(get_byte(data, 7) + get_byte(data, 6)) / 100)
+    ('GLV_tmp0'       , hex_to_int16(get_byte(data, 0) + get_byte(data, 1)) / 100), 
+    ('GLV_vmp1'       , hex_to_int16(get_byte(data, 2) + get_byte(data, 3)) / 100),
+    ('GLV_tmp2'       , hex_to_int16(get_byte(data, 4) + get_byte(data, 5)) / 100),
+    ('GLV_tmp3'       , hex_to_int16(get_byte(data, 6) + get_byte(data, 7)) / 100)
 ],
 '463': lambda data: [
-    ('GLV_tmp4'       , hex_to_int16(get_byte(data, 1) + get_byte(data, 0)) / 100), 
+    ('GLV_tmp4'       , hex_to_int16(get_byte(data, 0) + get_byte(data, 1)) / 100), 
 ],
 
 
 '465': lambda data: [
-    ('GLV_minVtg'       , hex_to_int16(get_byte(data, 1) + get_byte(data, 0)) / 10000), 
-    ('GLV_maxVtg'       , hex_to_int16(get_byte(data, 3) + get_byte(data, 2)) / 10000),
-    ('GLV_totVtg'       , hex_to_int16(get_byte(data, 7) + get_byte(data, 6) + get_byte(data,5) + get_byte(data,4)) / 10000),
+    ('GLV_minVtg'       , hex_to_int16(get_byte(data, 0) + get_byte(data, 1)) / 10000), 
+    ('GLV_maxVtg'       , hex_to_int16(get_byte(data, 2) + get_byte(data, 3)) / 10000),
+    ('GLV_totVtg'       , hex_to_int16(get_byte(data, 4) + get_byte(data, 5) + get_byte(data,6) + get_byte(data,7)) / 10000),
 ],
 
 
 '466': lambda data: [
-    ('GLV_minTemp'       , hex_to_int16(get_byte(data, 1) + get_byte(data, 0)) / 100), 
-    ('GLV_maxTemp'       , hex_to_int16(get_byte(data, 3) + get_byte(data, 2)) / 100),
-    ('GLV_current'       , hex_to_int16(get_byte(data, 7) + get_byte(data, 6)) / 1000)
+    ('GLV_minTemp'       , hex_to_int16(get_byte(data, 0) + get_byte(data, 1)) / 100), 
+    ('GLV_maxTemp'       , hex_to_int16(get_byte(data, 2) + get_byte(data, 3)) / 100),
+    ('GLV_current'       , hex_to_int16(get_byte(data, 6) + get_byte(data, 7)) / 1000)
 ],
 
 
