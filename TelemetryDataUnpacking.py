@@ -1,7 +1,7 @@
 ﻿#get_byte = lambda message, byte: message[byte*2:byte*2+2]
 #get_bit = lambda byte, bit: (byte & (2**bit)) >> bit
 #hex_to_int16(2ByteMessage)		Converts little endian message of 2 bytes into a SIGNED int16
-#					If you need unsigned. use int(byteMessage, N), but be wary of endianess
+#hex_to_uint16(2ByteMessage)
 
 
 {
@@ -865,19 +865,20 @@
     ('GLV_tmp4'       , int(get_byte(data,1) + get_byte(data,0),16)  / 100.0), 
 ],
 
-
 '465': lambda data: [
     ('GLV_minVtg'       , int(get_byte(data,1) + get_byte(data,0),16)  / 10000.0), 
     ('GLV_maxVtg'       , int(get_byte(data,3) + get_byte(data,2),16)  / 10000.0),
     ('GLV_totVtg'       , int( get_byte(data,7) + get_byte(data,6) + get_byte(data,5) + get_byte(data,4), 16) / 10000.0 ),
 ],
 
-
 '466': lambda data: [
     ('GLV_minTemp'       , int(get_byte(data,1) + get_byte(data,0),16)  / 100.0),
     ('GLV_maxTemp'       , int(get_byte(data,3) + get_byte(data,2),16)  / 100.0),
     ('GLV_current'       , int(get_byte(data,7) + get_byte(data,6),16)  / 1000.0),
 ],
+
+#AMK
+
 
 
 
