@@ -124,15 +124,19 @@
 	('BMS_Min_Temperature_ID',		int(get_byte(data, 7), 8))
 ],
 
-'443': lambda data: [
+'442': lambda data: [
 	('BMS_Tractive_System_Voltage',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10),
 	('BMS_Tractive_System_Current',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10),
 	('BMS_Tractive_System_Power',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10),
 	('BMS_State_of_Charge',			int(get_byte(data, 7) + get_byte(data, 6), 16) / 10)
 ],
 
-'444': lambda data: [
+'443': lambda data: [
 	('BMS_Error_Flags',			int(get_byte(data, 1) + get_byte(data, 0), 16))
+],                                                                    
+
+'444': lambda data: [
+	('BMS_State',			int(get_byte(data, 0), 16))
 ],                                                                    
                                                                       
 '500': lambda data: [                                                 
