@@ -304,10 +304,10 @@
 ],                                                                    
                                                                       
 '518': lambda data: [                                                 
-	('BMS_Cell_Voltage_96',		int(get_byte(data, ) + get_byte(data, 01), 16) / 10000),
-	('BMS_Cell_Voltage_97',		int(get_byte(data, ) + get_byte(data, 23), 16) / 10000),
-	('BMS_Cell_Voltage_98',		int(get_byte(data, ) + get_byte(data, 45), 16) / 10000),
-	('BMS_Cell_Voltage_99',		int(get_byte(data, ) + get_byte(data, 67), 16) / 10000)
+	('BMS_Cell_Voltage_96',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10000),
+	('BMS_Cell_Voltage_97',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10000),
+	('BMS_Cell_Voltage_98',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10000),
+	('BMS_Cell_Voltage_99',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10000)
 ],
 
 '519': lambda data: [
