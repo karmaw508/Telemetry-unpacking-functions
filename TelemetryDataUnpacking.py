@@ -21,7 +21,7 @@
 
 '402': lambda data: [
     ('Damper_position_RL' , int(get_byte(data, 1) + get_byte(data, 0), 16)/10),
-    ('Damper_rate_RL' , int(get_byte(data, 3) + get_byte(data, 2), 16)/10),
+    ('Damper_rate_RL' , hex_to_int16(get_byte(data, 2) + get_byte(data, 3))/10),
 ],
 
 '403': lambda data: [
@@ -889,7 +889,7 @@
 'XXX': lambda data: [
 	('AMK_1_Actual_velocity',		hex_to_int16(get_byte(0)+get_byte(1))	),
 	('AMK_1_Actual_velocity',		hex_to_int16(get_byte(0)+get_byte(1))	),
-	('AMK_1_Torque_current',		hex_to_int16(get_byte(2)+get_byte(3))	),
+	('AMK_1_Torque_current'),		hex_to_int16(get_byte(2)+get_byte(3))	),
 	('AMK_1_Magnetizing_current',		hex_to_int16(get_byte(4)+get_byte(5))	),
 ],
 
