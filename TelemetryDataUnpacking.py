@@ -794,6 +794,22 @@
 	('FZ_LOAD_RL'	 , hex_to_int16(get_byte(data, 4) + get_byte(data, 5)) / 10),
 	('FZ_LOAD_RR'	 , hex_to_int16(get_byte(data, 6) + get_byte(data, 7)) / 10)
 ],
+#ECU FX_ESTIMATED
+'45C': lambda data: [
+	('Fx_FL'	 , hex_to_int16(get_byte(data, 0) + get_byte(data, 1)) / 10), 
+	('Fx_FR'	 , hex_to_int16(get_byte(data, 2) + get_byte(data, 3)) / 10),
+	('Fx_RL'	 , hex_to_int16(get_byte(data, 4) + get_byte(data, 5)) / 10),
+	('Fx_RR'	 , hex_to_int16(get_byte(data, 6) + get_byte(data, 7)) / 10)
+],
+#ECU RPM DERIVATIVE
+'45D': lambda data: [
+	('RPM_DER_FL'	 , hex_to_int16(get_byte(data, 0) + get_byte(data, 1)) ), 
+	('RPM_DER_FR'	 , hex_to_int16(get_byte(data, 2) + get_byte(data, 3)) ),
+	('RPM_DER_RL'	 , hex_to_int16(get_byte(data, 4) + get_byte(data, 5)) ),
+	('RPM_DER_RR'	 , hex_to_int16(get_byte(data, 6) + get_byte(data, 7)) )
+],
+
+
 #ECU CONTROL SYSTEM VALUES
 '455': lambda data: [
 	('Mz_reference'	 , hex_to_int16(get_byte(data, 0) + get_byte(data, 1)) / 10), 
