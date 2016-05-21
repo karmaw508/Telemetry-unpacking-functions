@@ -30,7 +30,7 @@
 ],
 
 '410': lambda data: [
-    ('Steering_position_degrees' , int(get_byte(data, 1) + get_byte(data, 0), 16)*360)/4097)
+    ('Steering_position_degrees' , int(get_byte(data, 1) + get_byte(data, 0), 16)*360/4097),
 ],
 
 '411': lambda data: [
