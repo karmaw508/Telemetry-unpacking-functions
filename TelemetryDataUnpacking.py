@@ -889,7 +889,7 @@
 'XXX': lambda data: [
 	('AMK_1_Actual_velocity',		hex_to_int16(get_byte(0)+get_byte(1))	),
 	('AMK_1_Actual_velocity',		hex_to_int16(get_byte(0)+get_byte(1))	),
-	('AMK_1_Torque_current'),		hex_to_int16(get_byte(2)+get_byte(3))	),
+	('AMK_1_Torque_current',		hex_to_int16(get_byte(2)+get_byte(3))	),
 	('AMK_1_Magnetizing_current',		hex_to_int16(get_byte(4)+get_byte(5))	),
 ],
 
