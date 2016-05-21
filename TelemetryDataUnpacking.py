@@ -1,7 +1,10 @@
 ﻿#get_byte = lambda message, byte: message[byte*2:byte*2+2]
 #get_bit = lambda byte, bit: (byte & (2**bit)) >> bit
-#hex_to_int16(2ByteMessage)		Converts little endian message of 2 bytes into a SIGNED int16
-#hex_to_uint16(2ByteMessage)
+#hex_to_int16(2ByteMessage)		Converts message of 2 bytes into a SIGNED int16. Takes little endian, so no need to swap bytes
+#hex_to_uint16(2ByteMessage)	TODO
+#hex_to_int32(4ByteMessage)	TODO
+#hex_to_uint32(4ByteMessage)	TODO
+
 
 
 {
@@ -27,7 +30,7 @@
 ],
 
 '410': lambda data: [
-    ('Steering_position_degrees' , int((get_byte(data, 1) + get_byte(data, 0), 16)*360)/4097)
+    ('Steering_position_degrees' , int(get_byte(data, 1) + get_byte(data, 0), 16)*360)/4097)
 ],
 
 '411': lambda data: [
@@ -107,546 +110,547 @@
 ],
 #BMS
 #Sondre Ninive Andersen
+#'000': lambda data: [
+#	('BMS_Total_Voltage',	INSERT DATA HERE    ),
+#	('BMS_Total_Current',		INSERT DATA HERE    )
+#],
 
 '440': lambda data: [
-	('BMS_Max_Cell_Voltage',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10),
-	('BMS_Average_Cell_Voltage',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10),
-	('BMS_Min_Cell_Voltage',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10),
+	('BMS_Max_Cell_Voltage',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10),
+	('BMS_Average_Cell_Voltage',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10),
+	('BMS_Min_Cell_Voltage',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10),
 	('BMS_Max_Voltage_ID',			int(get_byte(data, 6), 8)),
 	('BMS_Min_Voltage_ID',			int(get_byte(data, 7), 8))
 ],
 
 '441': lambda data: [
-	('BMS_Max_Cell_Temperature',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10),
-	('BMS_Average_Cell_Temperature',	int(get_byte(data, 3) + get_byte(data, 2), 16) / 10),
-	('BMS_Min_Cell_Temperature',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10),
+	('BMS_Max_Cell_Temperature',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10),
+	('BMS_Average_Cell_Temperature',	int(get_byte(data, 2) + get_byte(data, 3), 16) / 10),
+	('BMS_Min_Cell_Temperature',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10),
 	('BMS_Max_Temperature_ID',		int(get_byte(data, 6), 8)),
 	('BMS_Min_Temperature_ID',		int(get_byte(data, 7), 8))
 ],
 
-'442': lambda data: [
-	('BMS_Tractive_System_Voltage',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10),
-	('BMS_Tractive_System_Current',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10),
-	('BMS_Tractive_System_Power',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10),
-	('BMS_State_of_Charge',			int(get_byte(data, 7) + get_byte(data, 6), 16) / 10)
+'443': lambda data: [
+	('BMS_Tractive_System_Voltage',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10),
+	('BMS_Tractive_System_Current',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10),
+	('BMS_Tractive_System_Power',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10),
+	('BMS_State_of_Charge',			int(get_byte(data, 6) + get_byte(data, 7), 16) / 10)
 ],
 
-'443': lambda data: [
-	('BMS_Error_Flags',			int(get_byte(data, 1) + get_byte(data, 0), 16))
-],                                                                    
-
 '444': lambda data: [
-	('BMS_State',			int(get_byte(data, 0), 16))
-],                                                                    
-                                                                      
-'500': lambda data: [                                                 
-	('BMS_Cell_Voltage_0',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10000),
-	('BMS_Cell_Voltage_1',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10000),
-	('BMS_Cell_Voltage_2',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10000),
-	('BMS_Cell_Voltage_3',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10000)
-],                                                                    
-                                                                      
-'501': lambda data: [                                                 
-	('BMS_Cell_Voltage_4',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10000),
-	('BMS_Cell_Voltage_5',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10000),
-	('BMS_Cell_Voltage_6',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10000),
-	('BMS_Cell_Voltage_7',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10000)
-],                                                                    
-                                                                      
-'502': lambda data: [                                                 
-	('BMS_Cell_Voltage_8',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10000),
-	('BMS_Cell_Voltage_9',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10000),
-	('BMS_Cell_Voltage_10',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10000),
-	('BMS_Cell_Voltage_11',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10000)
-],                                                                    
-                                                                      
-'503': lambda data: [                                                 
-	('BMS_Cell_Voltage_12',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10000),
-	('BMS_Cell_Voltage_13',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10000),
-	('BMS_Cell_Voltage_14',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10000),
-	('BMS_Cell_Voltage_15',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10000)
-],                                                                    
-                                                                      
-'504': lambda data: [                                                 
-	('BMS_Cell_Voltage_16',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10000),
-	('BMS_Cell_Voltage_17',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10000),
-	('BMS_Cell_Voltage_18',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10000),
-	('BMS_Cell_Voltage_19',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10000)
-],                                                                    
-                                                                      
-'505': lambda data: [                                                 
-	('BMS_Cell_Voltage_20',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10000),
-	('BMS_Cell_Voltage_21',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10000),
-	('BMS_Cell_Voltage_22',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10000),
-	('BMS_Cell_Voltage_23',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10000)
-],                                                                    
-                                                                      
-'506': lambda data: [                                                 
-	('BMS_Cell_Voltage_24',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10000),
-	('BMS_Cell_Voltage_25',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10000),
-	('BMS_Cell_Voltage_26',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10000),
-	('BMS_Cell_Voltage_27',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10000)
-],                                                                    
-                                                                      
-'507': lambda data: [                                                 
-	('BMS_Cell_Voltage_28',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10000),
-	('BMS_Cell_Voltage_29',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10000),
-	('BMS_Cell_Voltage_30',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10000),
-	('BMS_Cell_Voltage_31',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10000)
-],                                                                    
-                                                                      
-'508': lambda data: [                                                 
-	('BMS_Cell_Voltage_32',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10000),
-	('BMS_Cell_Voltage_33',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10000),
-	('BMS_Cell_Voltage_34',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10000),
-	('BMS_Cell_Voltage_35',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10000)
-],                                                                    
-                                                                      
-'509': lambda data: [                                                 
-	('BMS_Cell_Voltage_36',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10000),
-	('BMS_Cell_Voltage_37',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10000),
-	('BMS_Cell_Voltage_38',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10000),
-	('BMS_Cell_Voltage_39',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10000)
-],                                                                    
-                                                                      
-'50a': lambda data: [                                                 
-	('BMS_Cell_Voltage_40',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10000),
-	('BMS_Cell_Voltage_41',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10000),
-	('BMS_Cell_Voltage_42',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10000),
-	('BMS_Cell_Voltage_43',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10000)
-],                                                                    
-                                                                      
-'50b': lambda data: [                                                 
-	('BMS_Cell_Voltage_44',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10000),
-	('BMS_Cell_Voltage_45',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10000),
-	('BMS_Cell_Voltage_46',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10000),
-	('BMS_Cell_Voltage_47',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10000)
-],                                                                    
-                                                                      
-'50c': lambda data: [                                                 
-	('BMS_Cell_Voltage_48',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10000),
-	('BMS_Cell_Voltage_49',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10000),
-	('BMS_Cell_Voltage_50',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10000),
-	('BMS_Cell_Voltage_51',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10000)
-],                                                                    
-                                                                      
-'50d': lambda data: [                                                 
-	('BMS_Cell_Voltage_52',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10000),
-	('BMS_Cell_Voltage_53',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10000),
-	('BMS_Cell_Voltage_54',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10000),
-	('BMS_Cell_Voltage_55',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10000)
-],                                                                    
-                                                                      
-'50e': lambda data: [                                                 
-	('BMS_Cell_Voltage_56',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10000),
-	('BMS_Cell_Voltage_57',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10000),
-	('BMS_Cell_Voltage_58',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10000),
-	('BMS_Cell_Voltage_59',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10000)
-],                                                                    
-                                                                      
-'50f': lambda data: [                                                 
-	('BMS_Cell_Voltage_60',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10000),
-	('BMS_Cell_Voltage_61',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10000),
-	('BMS_Cell_Voltage_62',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10000),
-	('BMS_Cell_Voltage_63',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10000)
-],                                                                    
-                                                                      
-'510': lambda data: [                                                 
-	('BMS_Cell_Voltage_64',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10000),
-	('BMS_Cell_Voltage_65',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10000),
-	('BMS_Cell_Voltage_66',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10000),
-	('BMS_Cell_Voltage_67',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10000)
-],                                                                    
-                                                                      
-'511': lambda data: [                                                 
-	('BMS_Cell_Voltage_68',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10000),
-	('BMS_Cell_Voltage_69',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10000),
-	('BMS_Cell_Voltage_70',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10000),
-	('BMS_Cell_Voltage_71',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10000)
-],                                                                    
-                                                                      
-'512': lambda data: [                                                 
-	('BMS_Cell_Voltage_72',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10000),
-	('BMS_Cell_Voltage_73',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10000),
-	('BMS_Cell_Voltage_74',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10000),
-	('BMS_Cell_Voltage_75',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10000)
-],                                                                    
-                                                                      
-'513': lambda data: [                                                 
-	('BMS_Cell_Voltage_76',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10000),
-	('BMS_Cell_Voltage_77',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10000),
-	('BMS_Cell_Voltage_78',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10000),
-	('BMS_Cell_Voltage_79',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10000)
-],                                                                    
-                                                                      
-'514': lambda data: [                                                 
-	('BMS_Cell_Voltage_80',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10000),
-	('BMS_Cell_Voltage_81',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10000),
-	('BMS_Cell_Voltage_82',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10000),
-	('BMS_Cell_Voltage_83',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10000)
-],                                                                    
-                                                                      
-'515': lambda data: [                                                 
-	('BMS_Cell_Voltage_84',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10000),
-	('BMS_Cell_Voltage_85',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10000),
-	('BMS_Cell_Voltage_86',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10000),
-	('BMS_Cell_Voltage_87',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10000)
-],                                                                    
-                                                                      
-'516': lambda data: [                                                 
-	('BMS_Cell_Voltage_88',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10000),
-	('BMS_Cell_Voltage_89',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10000),
-	('BMS_Cell_Voltage_90',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10000),
-	('BMS_Cell_Voltage_91',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10000)
-],                                                                    
-                                                                      
-	'517': lambda data: [                                             
-	('BMS_Cell_Voltage_92',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10000),
-	('BMS_Cell_Voltage_93',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10000),
-	('BMS_Cell_Voltage_94',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10000),
-	('BMS_Cell_Voltage_95',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10000)
-],                                                                    
-                                                                      
-'518': lambda data: [                                                 
-	('BMS_Cell_Voltage_96',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10000),
-	('BMS_Cell_Voltage_97',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10000),
-	('BMS_Cell_Voltage_98',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10000),
-	('BMS_Cell_Voltage_99',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10000)
+	('BMS_Error_Flags',			int(get_byte(data, 0) + get_byte(data, 1), 16))
+],
+
+'500': lambda data: [
+	('BMS_Cell_Voltage_0',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10000),
+	('BMS_Cell_Voltage_1',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10000),
+	('BMS_Cell_Voltage_2',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10000),
+	('BMS_Cell_Voltage_3',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10000)
+],
+
+'501': lambda data: [
+	('BMS_Cell_Voltage_4',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10000),
+	('BMS_Cell_Voltage_5',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10000),
+	('BMS_Cell_Voltage_6',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10000),
+	('BMS_Cell_Voltage_7',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10000)
+],
+
+'502': lambda data: [
+	('BMS_Cell_Voltage_8',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10000),
+	('BMS_Cell_Voltage_9',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10000),
+	('BMS_Cell_Voltage_10',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10000),
+	('BMS_Cell_Voltage_11',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10000)
+],
+
+'503': lambda data: [
+	('BMS_Cell_Voltage_12',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10000),
+	('BMS_Cell_Voltage_13',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10000),
+	('BMS_Cell_Voltage_14',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10000),
+	('BMS_Cell_Voltage_15',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10000)
+],
+
+'504': lambda data: [
+	('BMS_Cell_Voltage_16',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10000),
+	('BMS_Cell_Voltage_17',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10000),
+	('BMS_Cell_Voltage_18',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10000),
+	('BMS_Cell_Voltage_19',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10000)
+],
+
+'505': lambda data: [
+	('BMS_Cell_Voltage_20',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10000),
+	('BMS_Cell_Voltage_21',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10000),
+	('BMS_Cell_Voltage_22',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10000),
+	('BMS_Cell_Voltage_23',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10000)
+],
+
+'506': lambda data: [
+	('BMS_Cell_Voltage_24',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10000),
+	('BMS_Cell_Voltage_25',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10000),
+	('BMS_Cell_Voltage_26',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10000),
+	('BMS_Cell_Voltage_27',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10000)
+],
+
+'507': lambda data: [
+	('BMS_Cell_Voltage_28',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10000),
+	('BMS_Cell_Voltage_29',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10000),
+	('BMS_Cell_Voltage_30',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10000),
+	('BMS_Cell_Voltage_31',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10000)
+],
+
+'508': lambda data: [
+	('BMS_Cell_Voltage_32',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10000),
+	('BMS_Cell_Voltage_33',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10000),
+	('BMS_Cell_Voltage_34',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10000),
+	('BMS_Cell_Voltage_35',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10000)
+],
+
+'509': lambda data: [
+	('BMS_Cell_Voltage_36',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10000),
+	('BMS_Cell_Voltage_37',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10000),
+	('BMS_Cell_Voltage_38',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10000),
+	('BMS_Cell_Voltage_39',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10000)
+],
+
+'50a': lambda data: [
+	('BMS_Cell_Voltage_40',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10000),
+	('BMS_Cell_Voltage_41',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10000),
+	('BMS_Cell_Voltage_42',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10000),
+	('BMS_Cell_Voltage_43',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10000)
+],
+
+'50b': lambda data: [
+	('BMS_Cell_Voltage_44',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10000),
+	('BMS_Cell_Voltage_45',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10000),
+	('BMS_Cell_Voltage_46',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10000),
+	('BMS_Cell_Voltage_47',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10000)
+],
+
+'50c': lambda data: [
+	('BMS_Cell_Voltage_48',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10000),
+	('BMS_Cell_Voltage_49',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10000),
+	('BMS_Cell_Voltage_50',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10000),
+	('BMS_Cell_Voltage_51',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10000)
+],
+
+'50d': lambda data: [
+	('BMS_Cell_Voltage_52',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10000),
+	('BMS_Cell_Voltage_53',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10000),
+	('BMS_Cell_Voltage_54',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10000),
+	('BMS_Cell_Voltage_55',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10000)
+],
+
+'50e': lambda data: [
+	('BMS_Cell_Voltage_56',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10000),
+	('BMS_Cell_Voltage_57',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10000),
+	('BMS_Cell_Voltage_58',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10000),
+	('BMS_Cell_Voltage_59',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10000)
+],
+
+'50f': lambda data: [
+	('BMS_Cell_Voltage_60',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10000),
+	('BMS_Cell_Voltage_61',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10000),
+	('BMS_Cell_Voltage_62',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10000),
+	('BMS_Cell_Voltage_63',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10000)
+],
+
+'510': lambda data: [
+	('BMS_Cell_Voltage_64',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10000),
+	('BMS_Cell_Voltage_65',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10000),
+	('BMS_Cell_Voltage_66',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10000),
+	('BMS_Cell_Voltage_67',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10000)
+],
+
+'511': lambda data: [
+	('BMS_Cell_Voltage_68',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10000),
+	('BMS_Cell_Voltage_69',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10000),
+	('BMS_Cell_Voltage_70',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10000),
+	('BMS_Cell_Voltage_71',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10000)
+],
+
+'512': lambda data: [
+	('BMS_Cell_Voltage_72',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10000),
+	('BMS_Cell_Voltage_73',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10000),
+	('BMS_Cell_Voltage_74',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10000),
+	('BMS_Cell_Voltage_75',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10000)
+],
+
+'513': lambda data: [
+	('BMS_Cell_Voltage_76',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10000),
+	('BMS_Cell_Voltage_77',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10000),
+	('BMS_Cell_Voltage_78',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10000),
+	('BMS_Cell_Voltage_79',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10000)
+],
+
+'514': lambda data: [
+	('BMS_Cell_Voltage_80',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10000),
+	('BMS_Cell_Voltage_81',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10000),
+	('BMS_Cell_Voltage_82',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10000),
+	('BMS_Cell_Voltage_83',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10000)
+],
+
+'515': lambda data: [
+	('BMS_Cell_Voltage_84',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10000),
+	('BMS_Cell_Voltage_85',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10000),
+	('BMS_Cell_Voltage_86',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10000),
+	('BMS_Cell_Voltage_87',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10000)
+],
+
+'516': lambda data: [
+	('BMS_Cell_Voltage_88',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10000),
+	('BMS_Cell_Voltage_89',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10000),
+	('BMS_Cell_Voltage_90',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10000),
+	('BMS_Cell_Voltage_91',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10000)
+],
+
+	'517': lambda data: [
+	('BMS_Cell_Voltage_92',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10000),
+	('BMS_Cell_Voltage_93',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10000),
+	('BMS_Cell_Voltage_94',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10000),
+	('BMS_Cell_Voltage_95',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10000)
+],
+
+'518': lambda data: [
+	('BMS_Cell_Voltage_96',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10000),
+	('BMS_Cell_Voltage_97',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10000),
+	('BMS_Cell_Voltage_98',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10000),
+	('BMS_Cell_Voltage_99',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10000)
 ],
 
 '519': lambda data: [
-	('BMS_Cell_Voltage_100',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10000),
-	('BMS_Cell_Voltage_101',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10000),
-	('BMS_Cell_Voltage_102',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10000),
-	('BMS_Cell_Voltage_103',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10000)
-],                                                                        
-                                                                          
-'51a': lambda data: [                                                     
-	('BMS_Cell_Voltage_104',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10000),
-	('BMS_Cell_Voltage_105',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10000),
-	('BMS_Cell_Voltage_106',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10000),
-	('BMS_Cell_Voltage_107',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10000)
-],                                                                        
-                                                                          
-'51b': lambda data: [                                                     
-	('BMS_Cell_Voltage_108',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10000),
-	('BMS_Cell_Voltage_109',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10000),
-	('BMS_Cell_Voltage_110',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10000),
-	('BMS_Cell_Voltage_111',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10000)
-],                                                                        
-                                                                          
-'51c': lambda data: [                                                     
-	('BMS_Cell_Voltage_112',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10000),
-	('BMS_Cell_Voltage_113',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10000),
-	('BMS_Cell_Voltage_114',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10000),
-	('BMS_Cell_Voltage_115',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10000)
-],                                                                        
-                                                                          
-'51d': lambda data: [                                                     
-	('BMS_Cell_Voltage_116',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10000),
-	('BMS_Cell_Voltage_117',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10000),
-	('BMS_Cell_Voltage_118',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10000),
-	('BMS_Cell_Voltage_119',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10000)
-],                                                                        
-                                                                          
-'51e': lambda data: [                                                     
-	('BMS_Cell_Voltage_120',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10000),
-	('BMS_Cell_Voltage_121',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10000),
-	('BMS_Cell_Voltage_122',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10000),
-	('BMS_Cell_Voltage_123',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10000)
-],                                                                        
-                                                                          
-'51f': lambda data: [                                                     
-	('BMS_Cell_Voltage_124',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10000),
-	('BMS_Cell_Voltage_125',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10000),
-	('BMS_Cell_Voltage_126',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10000),
-	('BMS_Cell_Voltage_127',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10000)
-],                                                                        
-                                                                          
-'520': lambda data: [                                                     
-	('BMS_Cell_Voltage_128',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10000),
-	('BMS_Cell_Voltage_129',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10000),
-	('BMS_Cell_Voltage_130',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10000),
-	('BMS_Cell_Voltage_131',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10000)
-],                                                                        
-                                                                          
-'521': lambda data: [                                                     
-	('BMS_Cell_Voltage_132',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10000),
-	('BMS_Cell_Voltage_133',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10000),
-	('BMS_Cell_Voltage_134',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10000),
-	('BMS_Cell_Voltage_135',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10000)
-],                                                                        
-                                                                          
-'522': lambda data: [                                                     
-	('BMS_Cell_Voltage_136',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10000),
-	('BMS_Cell_Voltage_137',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10000),
-	('BMS_Cell_Voltage_138',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10000),
-	('BMS_Cell_Voltage_139',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10000)
-],                                                                        
-                                                                          
-'523': lambda data: [                                                     
-	('BMS_Cell_Voltage_140',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10000),
-	('BMS_Cell_Voltage_141',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10000),
-	('BMS_Cell_Voltage_142',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10000),
-	('BMS_Cell_Voltage_143',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10000)
-],                                                                        
-                                                                          
-# BMS TEMPERATURE                                                         
-                                                                          
-'540': lambda data: [                                                     
-	('BMS_Cell_Temperature_0',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10),
-	('BMS_Cell_Temperature_1',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10),
-	('BMS_Cell_Temperature_2',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10),
-	('BMS_Cell_Temperature_3',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10)
-],                                                                        
-                                                                          
-'541': lambda data: [                                                     
-	('BMS_Cell_Temperature_4',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10),
-	('BMS_Cell_Temperature_5',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10),
-	('BMS_Cell_Temperature_6',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10),
-	('BMS_Cell_Temperature_7',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10)
-],                                                                        
-                                                                          
-'542': lambda data: [                                                     
-	('BMS_Cell_Temperature_8',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10),
-	('BMS_Cell_Temperature_9',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10),
-	('BMS_Cell_Temperature_10',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10),
-	('BMS_Cell_Temperature_11',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10)
-],                                                                        
-                                                                          
-'543': lambda data: [                                                     
-	('BMS_Cell_Temperature_12',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10),
-	('BMS_Cell_Temperature_13',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10),
-	('BMS_Cell_Temperature_14',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10),
-	('BMS_Cell_Temperature_15',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10)
-],                                                                        
-                                                                          
-'544': lambda data: [                                                     
-	('BMS_Cell_Temperature_16',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10),
-	('BMS_Cell_Temperature_17',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10),
-	('BMS_Cell_Temperature_18',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10),
-	('BMS_Cell_Temperature_19',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10)
-],                                                                        
-                                                                          
-'545': lambda data: [                                                     
-	('BMS_Cell_Temperature_20',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10),
-	('BMS_Cell_Temperature_21',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10),
-	('BMS_Cell_Temperature_22',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10),
-	('BMS_Cell_Temperature_23',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10)
-],                                                                        
-                                                                          
-'546': lambda data: [                                                     
-	('BMS_Cell_Temperature_24',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10),
-	('BMS_Cell_Temperature_25',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10),
-	('BMS_Cell_Temperature_26',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10),
-	('BMS_Cell_Temperature_27',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10)
-],                                                                        
-                                                                          
-'547': lambda data: [                                                     
-	('BMS_Cell_Temperature_28',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10),
-	('BMS_Cell_Temperature_29',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10),
-	('BMS_Cell_Temperature_30',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10),
-	('BMS_Cell_Temperature_31',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10)
-],                                                                        
-                                                                          
-'548': lambda data: [                                                     
-	('BMS_Cell_Temperature_32',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10),
-	('BMS_Cell_Temperature_33',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10),
-	('BMS_Cell_Temperature_34',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10),
-	('BMS_Cell_Temperature_35',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10)
-],                                                                        
-                                                                          
-'549': lambda data: [                                                     
-	('BMS_Cell_Temperature_36',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10),
-	('BMS_Cell_Temperature_37',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10),
-	('BMS_Cell_Temperature_38',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10),
-	('BMS_Cell_Temperature_39',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10)
-],                                                                        
-                                                                          
-'54a': lambda data: [                                                     
-	('BMS_Cell_Temperature_40',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10),
-	('BMS_Cell_Temperature_41',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10),
-	('BMS_Cell_Temperature_42',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10),
-	('BMS_Cell_Temperature_43',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10)
-],                                                                        
-                                                                          
-'54b': lambda data: [                                                     
-	('BMS_Cell_Temperature_44',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10),
-	('BMS_Cell_Temperature_45',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10),
-	('BMS_Cell_Temperature_46',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10),
-	('BMS_Cell_Temperature_47',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10)
-],                                                                        
-                                                                          
-'54c': lambda data: [                                                     
-	('BMS_Cell_Temperature_48',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10),
-	('BMS_Cell_Temperature_49',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10),
-	('BMS_Cell_Temperature_50',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10),
-	('BMS_Cell_Temperature_51',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10)
-],                                                                        
-                                                                          
-'54d': lambda data: [                                                     
-	('BMS_Cell_Temperature_52',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10),
-	('BMS_Cell_Temperature_53',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10),
-	('BMS_Cell_Temperature_54',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10),
-	('BMS_Cell_Temperature_55',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10)
-],                                                                        
-                                                                          
-'54e': lambda data: [                                                     
-	('BMS_Cell_Temperature_56',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10),
-	('BMS_Cell_Temperature_57',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10),
-	('BMS_Cell_Temperature_58',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10),
-	('BMS_Cell_Temperature_59',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10)
-],                                                                        
-                                                                          
-'54f': lambda data: [                                                     
-	('BMS_Cell_Temperature_60',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10),
-	('BMS_Cell_Temperature_61',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10),
-	('BMS_Cell_Temperature_62',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10),
-	('BMS_Cell_Temperature_63',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10)
-],                                                                        
-                                                                          
-'550': lambda data: [                                                     
-	('BMS_Cell_Temperature_64',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10),
-	('BMS_Cell_Temperature_65',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10),
-	('BMS_Cell_Temperature_66',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10),
-	('BMS_Cell_Temperature_67',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10)
-],                                                                        
-                                                                          
-'551': lambda data: [                                                     
-	('BMS_Cell_Temperature_68',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10),
-	('BMS_Cell_Temperature_69',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10),
-	('BMS_Cell_Temperature_70',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10),
-	('BMS_Cell_Temperature_71',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10)
-],                                                                        
-                                                                          
-'552': lambda data: [                                                     
-	('BMS_Cell_Temperature_72',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10),
-	('BMS_Cell_Temperature_73',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10),
-	('BMS_Cell_Temperature_74',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10),
-	('BMS_Cell_Temperature_75',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10)
-],                                                                        
-                                                                          
-'553': lambda data: [                                                     
-	('BMS_Cell_Temperature_76',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10),
-	('BMS_Cell_Temperature_77',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10),
-	('BMS_Cell_Temperature_78',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10),
-	('BMS_Cell_Temperature_79',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10)
-],                                                                        
-                                                                          
-'554': lambda data: [                                                     
-	('BMS_Cell_Temperature_80',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10),
-	('BMS_Cell_Temperature_81',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10),
-	('BMS_Cell_Temperature_82',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10),
-	('BMS_Cell_Temperature_83',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10)
-],                                                                        
-                                                                          
-'555': lambda data: [                                                     
-	('BMS_Cell_Temperature_84',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10),
-	('BMS_Cell_Temperature_85',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10),
-	('BMS_Cell_Temperature_86',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10),
-	('BMS_Cell_Temperature_87',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10)
-],                                                                        
-                                                                          
-'556': lambda data: [                                                     
-	('BMS_Cell_Temperature_88',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10),
-	('BMS_Cell_Temperature_89',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10),
-	('BMS_Cell_Temperature_90',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10),
-	('BMS_Cell_Temperature_91',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10)
-],                                                                        
-                                                                          
-'557': lambda data: [                                                     
-	('BMS_Cell_Temperature_92',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10),
-	('BMS_Cell_Temperature_93',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10),
-	('BMS_Cell_Temperature_94',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10),
-	('BMS_Cell_Temperature_95',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10)
-],                                                                        
-                                                                          
-'558': lambda data: [                                                     
-	('BMS_Cell_Temperature_96',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10),
-	('BMS_Cell_Temperature_97',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10),
-	('BMS_Cell_Temperature_98',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10),
-	('BMS_Cell_Temperature_99',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10)
+	('BMS_Cell_Voltage_100',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10000),
+	('BMS_Cell_Voltage_101',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10000),
+	('BMS_Cell_Voltage_102',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10000),
+	('BMS_Cell_Voltage_103',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10000)
+],
+
+'51a': lambda data: [
+	('BMS_Cell_Voltage_104',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10000),
+	('BMS_Cell_Voltage_105',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10000),
+	('BMS_Cell_Voltage_106',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10000),
+	('BMS_Cell_Voltage_107',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10000)
+],
+
+'51b': lambda data: [
+	('BMS_Cell_Voltage_108',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10000),
+	('BMS_Cell_Voltage_109',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10000),
+	('BMS_Cell_Voltage_110',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10000),
+	('BMS_Cell_Voltage_111',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10000)
+],
+
+'51c': lambda data: [
+	('BMS_Cell_Voltage_112',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10000),
+	('BMS_Cell_Voltage_113',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10000),
+	('BMS_Cell_Voltage_114',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10000),
+	('BMS_Cell_Voltage_115',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10000)
+],
+
+'51d': lambda data: [
+	('BMS_Cell_Voltage_116',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10000),
+	('BMS_Cell_Voltage_117',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10000),
+	('BMS_Cell_Voltage_118',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10000),
+	('BMS_Cell_Voltage_119',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10000)
+],
+
+'51e': lambda data: [
+	('BMS_Cell_Voltage_120',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10000),
+	('BMS_Cell_Voltage_121',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10000),
+	('BMS_Cell_Voltage_122',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10000),
+	('BMS_Cell_Voltage_123',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10000)
+],
+
+'51f': lambda data: [
+	('BMS_Cell_Voltage_124',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10000),
+	('BMS_Cell_Voltage_125',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10000),
+	('BMS_Cell_Voltage_126',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10000),
+	('BMS_Cell_Voltage_127',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10000)
+],
+
+'520': lambda data: [
+	('BMS_Cell_Voltage_128',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10000),
+	('BMS_Cell_Voltage_129',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10000),
+	('BMS_Cell_Voltage_130',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10000),
+	('BMS_Cell_Voltage_131',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10000)
+],
+
+'521': lambda data: [
+	('BMS_Cell_Voltage_132',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10000),
+	('BMS_Cell_Voltage_133',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10000),
+	('BMS_Cell_Voltage_134',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10000),
+	('BMS_Cell_Voltage_135',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10000)
+],
+
+'522': lambda data: [
+	('BMS_Cell_Voltage_136',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10000),
+	('BMS_Cell_Voltage_137',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10000),
+	('BMS_Cell_Voltage_138',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10000),
+	('BMS_Cell_Voltage_139',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10000)
+],
+
+'523': lambda data: [
+	('BMS_Cell_Voltage_140',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10000),
+	('BMS_Cell_Voltage_141',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10000),
+	('BMS_Cell_Voltage_142',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10000),
+	('BMS_Cell_Voltage_143',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10000)
+],
+
+# BMS TEMPERATURE
+
+'540': lambda data: [
+	('BMS_Cell_Temperature_0',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10),
+	('BMS_Cell_Temperature_1',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10),
+	('BMS_Cell_Temperature_2',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10),
+	('BMS_Cell_Temperature_3',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10)
+],
+
+'541': lambda data: [
+	('BMS_Cell_Temperature_4',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10),
+	('BMS_Cell_Temperature_5',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10),
+	('BMS_Cell_Temperature_6',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10),
+	('BMS_Cell_Temperature_7',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10)
+],
+
+'542': lambda data: [
+	('BMS_Cell_Temperature_8',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10),
+	('BMS_Cell_Temperature_9',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10),
+	('BMS_Cell_Temperature_10',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10),
+	('BMS_Cell_Temperature_11',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10)
+],
+
+'543': lambda data: [
+	('BMS_Cell_Temperature_12',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10),
+	('BMS_Cell_Temperature_13',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10),
+	('BMS_Cell_Temperature_14',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10),
+	('BMS_Cell_Temperature_15',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10)
+],
+
+'544': lambda data: [
+	('BMS_Cell_Temperature_16',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10),
+	('BMS_Cell_Temperature_17',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10),
+	('BMS_Cell_Temperature_18',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10),
+	('BMS_Cell_Temperature_19',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10)
+],
+
+'545': lambda data: [
+	('BMS_Cell_Temperature_20',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10),
+	('BMS_Cell_Temperature_21',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10),
+	('BMS_Cell_Temperature_22',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10),
+	('BMS_Cell_Temperature_23',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10)
+],
+
+'546': lambda data: [
+	('BMS_Cell_Temperature_24',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10),
+	('BMS_Cell_Temperature_25',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10),
+	('BMS_Cell_Temperature_26',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10),
+	('BMS_Cell_Temperature_27',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10)
+],
+
+'547': lambda data: [
+	('BMS_Cell_Temperature_28',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10),
+	('BMS_Cell_Temperature_29',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10),
+	('BMS_Cell_Temperature_30',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10),
+	('BMS_Cell_Temperature_31',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10)
+],
+
+'548': lambda data: [
+	('BMS_Cell_Temperature_32',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10),
+	('BMS_Cell_Temperature_33',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10),
+	('BMS_Cell_Temperature_34',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10),
+	('BMS_Cell_Temperature_35',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10)
+],
+
+'549': lambda data: [
+	('BMS_Cell_Temperature_36',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10),
+	('BMS_Cell_Temperature_37',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10),
+	('BMS_Cell_Temperature_38',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10),
+	('BMS_Cell_Temperature_39',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10)
+],
+
+'54a': lambda data: [
+	('BMS_Cell_Temperature_40',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10),
+	('BMS_Cell_Temperature_41',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10),
+	('BMS_Cell_Temperature_42',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10),
+	('BMS_Cell_Temperature_43',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10)
+],
+
+'54b': lambda data: [
+	('BMS_Cell_Temperature_44',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10),
+	('BMS_Cell_Temperature_45',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10),
+	('BMS_Cell_Temperature_46',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10),
+	('BMS_Cell_Temperature_47',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10)
+],
+
+'54c': lambda data: [
+	('BMS_Cell_Temperature_48',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10),
+	('BMS_Cell_Temperature_49',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10),
+	('BMS_Cell_Temperature_50',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10),
+	('BMS_Cell_Temperature_51',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10)
+],
+
+'54d': lambda data: [
+	('BMS_Cell_Temperature_52',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10),
+	('BMS_Cell_Temperature_53',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10),
+	('BMS_Cell_Temperature_54',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10),
+	('BMS_Cell_Temperature_55',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10)
+],
+
+'54e': lambda data: [
+	('BMS_Cell_Temperature_56',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10),
+	('BMS_Cell_Temperature_57',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10),
+	('BMS_Cell_Temperature_58',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10),
+	('BMS_Cell_Temperature_59',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10)
+],
+
+'54f': lambda data: [
+	('BMS_Cell_Temperature_60',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10),
+	('BMS_Cell_Temperature_61',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10),
+	('BMS_Cell_Temperature_62',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10),
+	('BMS_Cell_Temperature_63',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10)
+],
+
+'550': lambda data: [
+	('BMS_Cell_Temperature_64',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10),
+	('BMS_Cell_Temperature_65',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10),
+	('BMS_Cell_Temperature_66',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10),
+	('BMS_Cell_Temperature_67',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10)
+],
+
+'551': lambda data: [
+	('BMS_Cell_Temperature_68',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10),
+	('BMS_Cell_Temperature_69',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10),
+	('BMS_Cell_Temperature_70',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10),
+	('BMS_Cell_Temperature_71',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10)
+],
+
+'552': lambda data: [
+	('BMS_Cell_Temperature_72',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10),
+	('BMS_Cell_Temperature_73',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10),
+	('BMS_Cell_Temperature_74',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10),
+	('BMS_Cell_Temperature_75',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10)
+],
+
+'553': lambda data: [
+	('BMS_Cell_Temperature_76',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10),
+	('BMS_Cell_Temperature_77',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10),
+	('BMS_Cell_Temperature_78',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10),
+	('BMS_Cell_Temperature_79',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10)
+],
+
+'554': lambda data: [
+	('BMS_Cell_Temperature_80',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10),
+	('BMS_Cell_Temperature_81',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10),
+	('BMS_Cell_Temperature_82',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10),
+	('BMS_Cell_Temperature_83',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10)
+],
+
+'555': lambda data: [
+	('BMS_Cell_Temperature_84',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10),
+	('BMS_Cell_Temperature_85',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10),
+	('BMS_Cell_Temperature_86',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10),
+	('BMS_Cell_Temperature_87',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10)
+],
+
+'556': lambda data: [
+	('BMS_Cell_Temperature_88',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10),
+	('BMS_Cell_Temperature_89',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10),
+	('BMS_Cell_Temperature_90',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10),
+	('BMS_Cell_Temperature_91',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10)
+],
+
+'557': lambda data: [
+	('BMS_Cell_Temperature_92',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10),
+	('BMS_Cell_Temperature_93',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10),
+	('BMS_Cell_Temperature_94',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10),
+	('BMS_Cell_Temperature_95',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10)
+],
+
+'558': lambda data: [
+	('BMS_Cell_Temperature_96',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10),
+	('BMS_Cell_Temperature_97',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10),
+	('BMS_Cell_Temperature_98',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10),
+	('BMS_Cell_Temperature_99',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10)
 ],
 
 '559': lambda data: [
-	('BMS_Cell_Temperature_100',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10),
-	('BMS_Cell_Temperature_101',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10),
-	('BMS_Cell_Temperature_102',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10),
-	('BMS_Cell_Temperature_103',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10)
-],                                                                            
-                                                                              
-'55a': lambda data: [                                                         
-	('BMS_Cell_Temperature_104',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10),
-	('BMS_Cell_Temperature_105',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10),
-	('BMS_Cell_Temperature_106',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10),
-	('BMS_Cell_Temperature_107',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10)
-],                                                                            
-                                                                              
-'55b': lambda data: [                                                         
-	('BMS_Cell_Temperature_108',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10),
-	('BMS_Cell_Temperature_109',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10),
-	('BMS_Cell_Temperature_110',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10),
-	('BMS_Cell_Temperature_111',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10)
-],                                                                            
-                                                                              
-'55c': lambda data: [                                                         
-	('BMS_Cell_Temperature_112',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10),
-	('BMS_Cell_Temperature_113',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10),
-	('BMS_Cell_Temperature_114',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10),
-	('BMS_Cell_Temperature_115',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10)
-],                                                                            
-                                                                              
-'55d': lambda data: [                                                         
-	('BMS_Cell_Temperature_116',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10),
-	('BMS_Cell_Temperature_117',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10),
-	('BMS_Cell_Temperature_118',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10),
-	('BMS_Cell_Temperature_119',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10)
-],                                                                            
-                                                                              
-'55e': lambda data: [                                                         
-	('BMS_Cell_Temperature_120',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10),
-	('BMS_Cell_Temperature_121',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10),
-	('BMS_Cell_Temperature_122',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10),
-	('BMS_Cell_Temperature_123',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10)
-],                                                                            
-                                                                              
-'55f': lambda data: [                                                         
-	('BMS_Cell_Temperature_124',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10),
-	('BMS_Cell_Temperature_125',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10),
-	('BMS_Cell_Temperature_126',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10),
-	('BMS_Cell_Temperature_127',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10)
-],                                                                            
-                                                                              
-'560': lambda data: [                                                         
-	('BMS_Cell_Temperature_128',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10),
-	('BMS_Cell_Temperature_129',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10),
-	('BMS_Cell_Temperature_130',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10),
-	('BMS_Cell_Temperature_131',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10)
-],                                                                            
-                                                                              
-'561': lambda data: [                                                         
-	('BMS_Cell_Temperature_132',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10),
-	('BMS_Cell_Temperature_133',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10),
-	('BMS_Cell_Temperature_134',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10),
-	('BMS_Cell_Temperature_135',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10)
-],                                                                            
-                                                                              
-'562': lambda data: [                                                         
-	('BMS_Cell_Temperature_136',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10),
-	('BMS_Cell_Temperature_137',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10),
-	('BMS_Cell_Temperature_138',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10),
-	('BMS_Cell_Temperature_139',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10)
-],                                                                            
-                                                                              
-'563': lambda data: [                                                         
-	('BMS_Cell_Temperature_140',		int(get_byte(data, 1) + get_byte(data, 0), 16) / 10),
-	('BMS_Cell_Temperature_141',		int(get_byte(data, 3) + get_byte(data, 2), 16) / 10),
-	('BMS_Cell_Temperature_142',		int(get_byte(data, 5) + get_byte(data, 4), 16) / 10),
-	('BMS_Cell_Temperature_143',		int(get_byte(data, 7) + get_byte(data, 6), 16) / 10)
+	('BMS_Cell_Temperature_100',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10),
+	('BMS_Cell_Temperature_101',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10),
+	('BMS_Cell_Temperature_102',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10),
+	('BMS_Cell_Temperature_103',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10)
+],
+
+'55a': lambda data: [
+	('BMS_Cell_Temperature_104',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10),
+	('BMS_Cell_Temperature_105',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10),
+	('BMS_Cell_Temperature_106',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10),
+	('BMS_Cell_Temperature_107',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10)
+],
+
+'55b': lambda data: [
+	('BMS_Cell_Temperature_108',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10),
+	('BMS_Cell_Temperature_109',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10),
+	('BMS_Cell_Temperature_110',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10),
+	('BMS_Cell_Temperature_111',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10)
+],
+
+'55c': lambda data: [
+	('BMS_Cell_Temperature_112',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10),
+	('BMS_Cell_Temperature_113',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10),
+	('BMS_Cell_Temperature_114',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10),
+	('BMS_Cell_Temperature_115',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10)
+],
+
+'55d': lambda data: [
+	('BMS_Cell_Temperature_116',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10),
+	('BMS_Cell_Temperature_117',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10),
+	('BMS_Cell_Temperature_118',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10),
+	('BMS_Cell_Temperature_119',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10)
+],
+
+'55e': lambda data: [
+	('BMS_Cell_Temperature_120',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10),
+	('BMS_Cell_Temperature_121',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10),
+	('BMS_Cell_Temperature_122',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10),
+	('BMS_Cell_Temperature_123',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10)
+],
+
+'55f': lambda data: [
+	('BMS_Cell_Temperature_124',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10),
+	('BMS_Cell_Temperature_125',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10),
+	('BMS_Cell_Temperature_126',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10),
+	('BMS_Cell_Temperature_127',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10)
+],
+
+'560': lambda data: [
+	('BMS_Cell_Temperature_128',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10),
+	('BMS_Cell_Temperature_129',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10),
+	('BMS_Cell_Temperature_130',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10),
+	('BMS_Cell_Temperature_131',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10)
+],
+
+'561': lambda data: [
+	('BMS_Cell_Temperature_132',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10),
+	('BMS_Cell_Temperature_133',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10),
+	('BMS_Cell_Temperature_134',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10),
+	('BMS_Cell_Temperature_135',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10)
+],
+
+'562': lambda data: [
+	('BMS_Cell_Temperature_136',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10),
+	('BMS_Cell_Temperature_137',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10),
+	('BMS_Cell_Temperature_138',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10),
+	('BMS_Cell_Temperature_139',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10)
+],
+
+'563': lambda data: [
+	('BMS_Cell_Temperature_140',		int(get_byte(data, 0) + get_byte(data, 1), 16) / 10),
+	('BMS_Cell_Temperature_141',		int(get_byte(data, 2) + get_byte(data, 3), 16) / 10),
+	('BMS_Cell_Temperature_142',		int(get_byte(data, 4) + get_byte(data, 5), 16) / 10),
+	('BMS_Cell_Temperature_143',		int(get_byte(data, 6) + get_byte(data, 7), 16) / 10)
 ],
 
 
 #Simen
+#TODO bruk hex_to_in16
 #R16 mechanical data 1
 '290': lambda data: [
     ('R16[1]_current_speed' 	, struct.unpack('>i', (('FFFF' if (int(get_byte(data, 1), 16) & 1 << 7) else '0000') + get_byte(data, 1) + get_byte(data, 0)).decode('hex'))[0] / 100),
@@ -739,6 +743,7 @@
     ('R16[4]_DC_voltage' 		, struct.unpack('>i', (('FFFF' if (int(get_byte(data, 7), 16) & 1 << 7) else '0000') + get_byte(data, 7) + get_byte(data, 6)).decode('hex'))[0] / 100)
 ],
 
+#TODO Skal det være int32??
 #R16 Status data
 '293': lambda data: [
 	('R16[1]_status_bit_{0}'.format(i) 	, 1 if 0 != int(get_byte(data, 3) + get_byte(data, 2) + get_byte(data, 1) + get_byte(data, 0), 16) & (2**i) else 0) for i in range(32)
@@ -877,10 +882,32 @@
     ('GLV_current'       , int(get_byte(data,7) + get_byte(data,6),16)  / 1000.0),
 ],
 
-#AMK
+#AMK INVERTERS
 
+#AMK INVERTER
+#AMK Actual Values 1
+'XXX': lambda data: [
+	(			),
+	('AMK_1_Actual_velocity',		hex_to_int16(get_byte(0)+get_byte(1))	),
+	('AMK_1_Torque_current'),		hex_to_int16(get_byte(2)+get_byte(3))	),
+	('AMK_1_Magnetizing_current',		hex_to_int16(get_byte(4)+get_byte(5))	),
+],
 
+#AMK Actual Values 2
+'XXX': lambda data: [
+	('AMK_1_Temp_Motor',		hex_to_int16(get_byte(0)+get_byte(1))	),
+	('AMK_1_Temp_Inverter',		hex_to_int16(get_byte(2)+get_byte(3))	),		
+	('AMK_1_Error_info',		hex_to_uint16(get_byte(4)+get_byte(5))	),
+	('AMK_1_Temp_IGBT',		hex_to_int16(get_byte(6)+get_byte(7))	),
+],
 
+#AMK Setpoints 1
+'XXX': lambda data: [
+	('AMK_1_Control',			hex_to_uint16(get_byte(0)+get_byte(1))	),
+	('AMK_1_Target_Velocity', 		hex_to_int16(get_byte(0)+get_byte(1))	),
+	('AMK_1_Torque_Limit_Positive',		hex_to_int16(get_byte(0)+get_byte(1))	),
+	('aMK_1_Torque_Limit_Positive',		hex_to_int16(get_byte(0)+get_byte(1))	),
+],
 
 
 
