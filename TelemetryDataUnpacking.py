@@ -893,17 +893,18 @@
 	('AMK_1_Magnetizing_current',		hex_to_int16(get_byte(4)+get_byte(5))	),
 ],
 
+#TODO READD UNSIGNED
 #AMK Actual Values 2
 'XXX': lambda data: [
 	('AMK_1_Temp_Motor',		hex_to_int16(get_byte(0)+get_byte(1))	),
 	('AMK_1_Temp_Inverter',		hex_to_int16(get_byte(2)+get_byte(3))	),		
-	('AMK_1_Error_info',		hex_to_uint16(get_byte(4)+get_byte(5))	),
+	('AMK_1_Error_info',		hex_to_int16(get_byte(4)+get_byte(5))	),
 	('AMK_1_Temp_IGBT',		hex_to_int16(get_byte(6)+get_byte(7))	),
 ],
 
 #AMK Setpoints 1
 'XXX': lambda data: [
-	('AMK_1_Control',			hex_to_uint16(get_byte(0)+get_byte(1))	),
+	('AMK_1_Control',			hex_to_int16(get_byte(0)+get_byte(1))	),
 	('AMK_1_Target_Velocity', 		hex_to_int16(get_byte(0)+get_byte(1))	),
 	('AMK_1_Torque_Limit_Positive',		hex_to_int16(get_byte(0)+get_byte(1))	),
 	('aMK_1_Torque_Limit_Positive',		hex_to_int16(get_byte(0)+get_byte(1))	),
