@@ -1,44 +1,44 @@
 ﻿#get_byte = lambda message, byte: message[byte*2:byte*2+2]
 #get_bit = lambda byte, bit: (byte & (2**bit)) >> bit
 #hex_to_int16(2ByteMessage)		Converts message of 2 bytes into a SIGNED int16. Takes little endian, so no need to swap bytes
-#hex_to_uint16(2ByteMessage)	TODO
-#hex_to_int32(4ByteMessage)	TODO
-#hex_to_uint32(4ByteMessage)	TODO
+#hex_to_uint16(2ByteMessage)	
+#hex_to_int32(4ByteMessage)	
+#hex_to_uint32(4ByteMessage)	
 
 
 
 {
 #ADC_sensor_inputs
 '400': lambda data: [
-    ('Damper_position_FL' , int(get_byte(data, 1) + get_byte(data, 0), 16)/10),
-    ('Damper_rate_FL' , hex_to_int16(get_byte(data, 2) + get_byte(data, 3) )/10),
+    ('Damper_position_FL' , hex_to_uint16(get_byte(data, 0) + get_byte(data, 1))/10.0),
+    ('Damper_rate_FL' , hex_to_int16(get_byte(data, 2) + get_byte(data, 3) )/10.0),
 ],
 
 '401': lambda data: [
-    ('Damper_position_FR' , int(get_byte(data, 1) + get_byte(data, 0), 16)/10),
-    ('Damper_rate_FR' , hex_to_int16(get_byte(data, 2) + get_byte(data, 3) )/10),
+    ('Damper_position_FR' , hex_to_uint16(get_byte(data, 0) + get_byte(data, 1))/10.0),
+    ('Damper_rate_FR' , hex_to_int16(get_byte(data, 2) + get_byte(data, 3) )/10.0),
 ],
 
 '402': lambda data: [
-    ('Damper_position_RL' , int(get_byte(data, 1) + get_byte(data, 0), 16)/10),
-    ('Damper_rate_RL' , hex_to_int16(get_byte(data, 2) + get_byte(data, 3) )/10),
+    ('Damper_position_RL' , hex_to_uint16(get_byte(data, 0) + get_byte(data, 1))/10.0),
+    ('Damper_rate_RL' , hex_to_int16(get_byte(data, 2) + get_byte(data, 3) )/10.0),
 ],
 
 '403': lambda data: [
-    ('Damper_position_RR' , int(get_byte(data, 1) + get_byte(data, 0), 16)/10),
-    ('Damper_rate_RR' , hex_to_int16(get_byte(data, 2) + get_byte(data, 3) )/10),
+    ('Damper_position_RR' , hex_to_uint16(get_byte(data, 0) + get_byte(data, 1))/10.0),
+    ('Damper_rate_RR' , hex_to_int16(get_byte(data, 2) + get_byte(data, 3))/10.0),
 ],
 
 '410': lambda data: [
-    ('Steering_position_degrees' , hex_to_int16(get_byte(data, 0) + get_byte(data, 1) )*360/4097),
+    ('Steering_position_degrees' , hex_to_int16(get_byte(data, 0) + get_byte(data, 1) )*360.0/4097.0),
 ],
 
 '411': lambda data: [
-    ('TPS_left' , int(get_byte(data, 1) + get_byte(data, 0), 16)/10)
+    ('TPS_left' , hex_to_uint16(get_byte(data, 0) + get_byte(data, 1))/10.0)
 ],
 
 '412': lambda data: [
-    ('TPS_right' , int(get_byte(data, 1) + get_byte(data, 0), 16)/10)
+    ('TPS_right' , hex_to_uint16(get_byte(data, 0) + get_byte(data, 1))/10.0)
 ],
 
 '413': lambda data: [
