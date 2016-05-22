@@ -11,26 +11,26 @@
 #ADC_sensor_inputs
 '400': lambda data: [
     ('Damper_position_FL' , int(get_byte(data, 1) + get_byte(data, 0), 16)/10),
-    ('Damper_rate_FL' , int(get_byte(data, 3) + get_byte(data, 2), 16)/10),
+    ('Damper_rate_FL' , hex_to_int16(get_byte(data, 2) + get_byte(data, 3) )/10),
 ],
 
 '401': lambda data: [
     ('Damper_position_FR' , int(get_byte(data, 1) + get_byte(data, 0), 16)/10),
-    ('Damper_rate_FR' , int(get_byte(data, 3) + get_byte(data, 2), 16)/10),
+    ('Damper_rate_FR' , hex_to_int16(get_byte(data, 2) + get_byte(data, 3) )/10),
 ],
 
 '402': lambda data: [
     ('Damper_position_RL' , int(get_byte(data, 1) + get_byte(data, 0), 16)/10),
-    ('Damper_rate_RL' , hex_to_int16(get_byte(data, 2) + get_byte(data, 3))/10),
+    ('Damper_rate_RL' , hex_to_int16(get_byte(data, 2) + get_byte(data, 3) )/10),
 ],
 
 '403': lambda data: [
     ('Damper_position_RR' , int(get_byte(data, 1) + get_byte(data, 0), 16)/10),
-    ('Damper_rate_RR' , int(get_byte(data, 3) + get_byte(data, 2), 16)/10),
+    ('Damper_rate_RR' , hex_to_int16(get_byte(data, 2) + get_byte(data, 3) )/10),
 ],
 
 '410': lambda data: [
-    ('Steering_position_degrees' , int(get_byte(data, 1) + get_byte(data, 0), 16)*360/4097),
+    ('Steering_position_degrees' , hex_to_int16(get_byte(data, 0) + get_byte(data, 1) )*360/4097),
 ],
 
 '411': lambda data: [
