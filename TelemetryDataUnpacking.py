@@ -888,29 +888,29 @@
 '185': lambda data: [
 	('AMK_FL_control',			hex_to_uint16(get_byte(0)+get_byte(1))	),
 	('AMK_FL_RPM_setpoint',		hex_to_int16(get_byte(2)+get_byte(3))	),
-	('AMK_FL_torque_pos',		hex_to_int16(get_byte(4)+get_byte(5)) / 1000.0	),
-	('AMK_FL_torque_neg',		hex_to_int16(get_byte(6)+get_byte(7)) / 1000.0	),
+	('AMK_FL_torque_pos',		hex_to_int16(get_byte(4)+get_byte(5)) / 100.0	),
+	('AMK_FL_torque_neg',		hex_to_int16(get_byte(6)+get_byte(7)) / 100.0	),
 ],
 
 '186': lambda data: [
 	('AMK_FR_control',			hex_to_uint16(get_byte(0)+get_byte(1))	),
 	('AMK_FR_RPM_setpoint',		hex_to_int16(get_byte(2)+get_byte(3))	),
-	('AMK_FR_torque_pos',		hex_to_int16(get_byte(4)+get_byte(5)) / 1000.0	),
-	('AMK_FR_torque_neg',		hex_to_int16(get_byte(6)+get_byte(7)) / 1000.0	),
+	('AMK_FR_torque_pos',		hex_to_int16(get_byte(4)+get_byte(5)) / 100.0	),
+	('AMK_FR_torque_neg',		hex_to_int16(get_byte(6)+get_byte(7)) / 100.0	),
 ],
 
 '189': lambda data: [
 	('AMK_RL_control',			hex_to_uint16(get_byte(0)+get_byte(1))	),
 	('AMK_RL_RPM_setpoint',		hex_to_int16(get_byte(2)+get_byte(3))	),
-	('AMK_RL_torque_pos',		hex_to_int16(get_byte(4)+get_byte(5)) / 1000.0	),
-	('AMK_RL_torque_neg',		hex_to_int16(get_byte(6)+get_byte(7)) / 1000.0	),
+	('AMK_RL_torque_pos',		hex_to_int16(get_byte(4)+get_byte(5)) / 100.0	),
+	('AMK_RL_torque_neg',		hex_to_int16(get_byte(6)+get_byte(7)) / 100.0	),
 ],
 
 '19A': lambda data: [
 	('AMK_RR_control',			hex_to_uint16(get_byte(0)+get_byte(1))	),
 	('AMK_RR_RPM_setpoint',		hex_to_int16(get_byte(2)+get_byte(3))	),
-	('AMK_RR_torque_pos',		hex_to_int16(get_byte(4)+get_byte(5)) / 1000.0	),
-	('AMK_RR_torque_neg',		hex_to_int16(get_byte(6)+get_byte(7)) / 1000.0	),
+	('AMK_RR_torque_pos',		hex_to_int16(get_byte(4)+get_byte(5)) / 100.0	),
+	('AMK_RR_torque_neg',		hex_to_int16(get_byte(6)+get_byte(7)) / 100.0	),
 ],
 
 #AMK INVERTER
