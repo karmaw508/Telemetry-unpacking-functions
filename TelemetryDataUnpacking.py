@@ -110,11 +110,6 @@
 ],
 #BMS
 #Sondre Ninive Andersen
-#'000': lambda data: [
-#	('BMS_Total_Voltage',	INSERT DATA HERE    ),
-#	('BMS_Total_Current',		INSERT DATA HERE    )
-#],
-
 '440': lambda data: [
 	('BMS_Max_Cell_Voltage',		int(get_byte(data, 0) + get_byte(data, 1), 16) * 0.0001),
 	('BMS_Average_Cell_Voltage',		int(get_byte(data, 2) + get_byte(data, 3), 16) * 0.0001),
