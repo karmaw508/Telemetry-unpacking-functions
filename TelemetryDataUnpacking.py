@@ -390,8 +390,6 @@
 	('BMS_Cell_Voltage_143',		int(get_byte(data, 6) + get_byte(data, 7), 16) * 0.0001)
 ],
 
-# BMS TEMPERATURE
-
 '540': lambda data: [
 	('BMS_Cell_Temperature_0',		int(get_byte(data, 0) + get_byte(data, 1), 16) * 0.1),
 	('BMS_Cell_Temperature_1',		int(get_byte(data, 2) + get_byte(data, 3), 16) * 0.1),
@@ -643,7 +641,6 @@
 	('BMS_Cell_Temperature_142',		int(get_byte(data, 4) + get_byte(data, 5), 16) * 0.1),
 	('BMS_Cell_Temperature_143',		int(get_byte(data, 6) + get_byte(data, 7), 16) * 0.1)
 ],
-
 
 #Simen
 #TODO bruk hex_to_in16
