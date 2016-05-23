@@ -108,6 +108,7 @@
     ('Max_temperature' , int(get_byte(data, 0) + get_byte(data, 1), 16)),
     ('Balance_settings' , int(get_byte(data, 2) + get_byte(data, 3), 16))
 ],
+
 #BMS
 #Sondre Ninive Andersen
 '440': lambda data: [
