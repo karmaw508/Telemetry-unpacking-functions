@@ -935,6 +935,14 @@
 	('aMK_1_Torque_Limit_Positive',		hex_to_int16(get_byte(0)+get_byte(1))	),
 ],
 
+#FAN CONTROL STATUS
+'4B0': lambda data: [
+	('Battery_fans_dutycycle',	int(get_byte(0)) ),
+	('Radiator_fans_dutycycle',	int(get_byte(1)) ),
+	('Pump_state',			int(get_byte(2)) ),
+	('Fan_ctrl_mode',		int(get_byte(3)) ),
+	('12V_state',			int(get_byte(4)) ),
+],
 
 
 
