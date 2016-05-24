@@ -118,16 +118,16 @@
 	('BMS_Max_Cell_Voltage',		int(get_byte(data, 0) + get_byte(data, 1), 16) * 0.0001),
 	('BMS_Average_Cell_Voltage',		int(get_byte(data, 2) + get_byte(data, 3), 16) * 0.0001),
 	('BMS_Min_Cell_Voltage',		int(get_byte(data, 4) + get_byte(data, 5), 16) * 0.0001),
-	('BMS_Max_Voltage_ID',			int(get_byte(data, 6), 8)),
-	('BMS_Min_Voltage_ID',			int(get_byte(data, 7), 8))
+	('BMS_Max_Voltage_ID',			int(get_byte(data, 6), 16)),
+	('BMS_Min_Voltage_ID',			int(get_byte(data, 7), 16))
 ],
 
 '441': lambda data: [
 	('BMS_Max_Cell_Temperature',		int(get_byte(data, 0) + get_byte(data, 1), 16) * 0.1),
 	('BMS_Average_Cell_Temperature',	int(get_byte(data, 2) + get_byte(data, 3), 16) * 0.1),
 	('BMS_Min_Cell_Temperature',		int(get_byte(data, 4) + get_byte(data, 5), 16) * 0.1),
-	('BMS_Max_Temperature_ID',		int(get_byte(data, 6), 8)),
-	('BMS_Min_Temperature_ID',		int(get_byte(data, 7), 8))
+	('BMS_Max_Temperature_ID',		int(get_byte(data, 6), 16)),
+	('BMS_Min_Temperature_ID',		int(get_byte(data, 7), 16))
 ],
 
 '442': lambda data: [
