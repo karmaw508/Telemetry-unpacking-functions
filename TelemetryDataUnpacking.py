@@ -46,28 +46,31 @@
 ],
 
 '420': lambda data: [
-    ('Temperature_gear_FL' , int(get_byte(data, 1) + get_byte(data, 0), 16)/10),
-    ('Temperature_gear_FR' , int(get_byte(data, 3) + get_byte(data, 2), 16)/10)
+    ('Temperature_gear_FL' , int(get_byte(data, 1) + get_byte(data, 0), 16)/10.0),
+    ('Temperature_gear_FR' , int(get_byte(data, 3) + get_byte(data, 2), 16)/10.0)
 ],
 
 '421': lambda data: [
-    ('Temperature_gear_RL' , int(get_byte(data, 1) + get_byte(data, 0), 16)/10),
-    ('Temperature_gear_RR' , int(get_byte(data, 3) + get_byte(data, 2), 16)/10)
+    ('Temperature_gear_RL' , int(get_byte(data, 1) + get_byte(data, 0), 16)/10.0),
+    ('Temperature_gear_RR' , int(get_byte(data, 3) + get_byte(data, 2), 16)/10.0)
 ],
 
 '422': lambda data: [
-    ('Temperature_coolant_left' , int(get_byte(data, 1) + get_byte(data, 0), 16)/10)
+    ('Temperature_coolant_left' , int(get_byte(data, 1) + get_byte(data, 0), 16)/10.0)
 ],
 
 '423': lambda data: [
-    ('Temperature_coolant_right' , int(get_byte(data, 1) + get_byte(data, 0), 16)/10)
+    ('Temperature_coolant_right' , int(get_byte(data, 1) + get_byte(data, 0), 16)/10.0)
 ],
 
 '414': lambda data: [
     ('Brake_pressure_left' , int(get_byte(data, 0), 8)/10.0),
     ('Brake_pressure_right' , int(get_byte(data, 1), 8)/10.0)
 ],
-
+#BSPD - Trigger ( data uint8_t == 0 means that BSPD has trigged ).
+'480': lambda data: [
+    ('BSPD_trigger' , int(get_byte(data, 0), 8))
+],
 #GLVBMS
 #Mikael Kvalvær
 '620': lambda data: [
