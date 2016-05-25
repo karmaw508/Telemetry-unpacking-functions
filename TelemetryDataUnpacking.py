@@ -912,29 +912,65 @@
 
 
 #AMK Actual Values 1
-'XXX': lambda data: [
-	(('AMK_1_status_bit_{0}'.format(i), 	1 if 1 == hex_to_uint16(get_byte(data, 0) + get_byte(data, 1)) & (2**i) else 0) for i in range(8,16)),
-	('AMK_1_Actual_velocity',		hex_to_int16(get_byte(2)+get_byte(4))	),
-	('AMK_1_Torque_current',		hex_to_int16(get_byte(4)+get_byte(6))	),
-	('AMK_1_Magnetizing_current',		hex_to_int16(get_byte(6)+get_byte(8))	),
+'284': lambda data: [
+	(('AMK_FL_status_bit_{0}'.format(i), 	1 if 1 == hex_to_uint16(get_byte(data, 0) + get_byte(data, 1)) & (2**i) else 0) for i in range(8,16)),
+	('AMK_FL_Actual_velocity',		hex_to_int16(get_byte(2)+get_byte(3))	),
+	('AMK_FL_Torque_current',		hex_to_int16(get_byte(4)+get_byte(5))	),
+	('AMK_FL_Magnetizing_current',		hex_to_int16(get_byte(6)+get_byte(7))	),
 ],
-
-
 #AMK Actual Values 2
-'XXX': lambda data: [
-	('AMK_1_Temp_Motor',		hex_to_int16(get_byte(0)+get_byte(1))*10.0	),
-	('AMK_1_Temp_Inverter',		hex_to_int16(get_byte(2)+get_byte(3))*10.0	),		
-	('AMK_1_Error_info',		hex_to_uint16(get_byte(4)+get_byte(5))		),
-	('AMK_1_Temp_IGBT',		hex_to_int16(get_byte(6)+get_byte(7))*10.0	),
+'286': lambda data: [
+	('AMK_FL_Temp_Motor',		hex_to_int16(get_byte(0)+get_byte(1))*10.0	),
+	('AMK_FL_Temp_Inverter',		hex_to_int16(get_byte(2)+get_byte(3))*10.0	),		
+	('AMK_FL_Error_info',		hex_to_uint16(get_byte(4)+get_byte(5))		),
+	('AMK_FL_Temp_IGBT',		hex_to_int16(get_byte(6)+get_byte(7))*10.0	),
 ],
 
-#AMK Setpoints 1
-'XXX': lambda data: [
-	('AMK_1_Control',			hex_to_uint16(get_byte(0)+get_byte(1))	),
-	('AMK_1_Target_Velocity', 		hex_to_int16(get_byte(0)+get_byte(1))	),
-	('AMK_1_Torque_Limit_Positive',		hex_to_int16(get_byte(0)+get_byte(1))	),
-	('aMK_1_Torque_Limit_Positive',		hex_to_int16(get_byte(0)+get_byte(1))	),
+#AMK Actual Values 1
+'285': lambda data: [
+	(('AMK_FR_status_bit_{0}'.format(i), 	1 if 1 == hex_to_uint16(get_byte(data, 0) + get_byte(data, 1)) & (2**i) else 0) for i in range(8,16)),
+	('AMK_FR_Actual_velocity',		hex_to_int16(get_byte(2)+get_byte(3))	),
+	('AMK_FR_Torque_current',		hex_to_int16(get_byte(4)+get_byte(5))	),
+	('AMK_FR_Magnetizing_current',		hex_to_int16(get_byte(6)+get_byte(7))	),
 ],
+#AMK Actual Values 2
+'287': lambda data: [
+	('AMK_FR_Temp_Motor',		hex_to_int16(get_byte(0)+get_byte(1))*10.0	),
+	('AMK_FR_Temp_Inverter',		hex_to_int16(get_byte(2)+get_byte(3))*10.0	),		
+	('AMK_FR_Error_info',		hex_to_uint16(get_byte(4)+get_byte(5))		),
+	('AMK_FR_Temp_IGBT',		hex_to_int16(get_byte(6)+get_byte(7))*10.0	),
+],
+
+#AMK Actual Values 1
+'288': lambda data: [
+	(('AMK_RL_status_bit_{0}'.format(i), 	1 if 1 == hex_to_uint16(get_byte(data, 0) + get_byte(data, 1)) & (2**i) else 0) for i in range(8,16)),
+	('AMK_RL_Actual_velocity',		hex_to_int16(get_byte(2)+get_byte(3))	),
+	('AMK_RL_Torque_current',		hex_to_int16(get_byte(4)+get_byte(5))	),
+	('AMK_RL_Magnetizing_current',		hex_to_int16(get_byte(6)+get_byte(7))	),
+],
+#AMK Actual Values 2
+'28A': lambda data: [
+	('AMK_RL_Temp_Motor',		hex_to_int16(get_byte(0)+get_byte(1))*10.0	),
+	('AMK_RL_Temp_Inverter',		hex_to_int16(get_byte(2)+get_byte(3))*10.0	),		
+	('AMK_RL_Error_info',		hex_to_uint16(get_byte(4)+get_byte(5))		),
+	('AMK_RL_Temp_IGBT',		hex_to_int16(get_byte(6)+get_byte(7))*10.0	),
+],
+
+#AMK Actual Values 1
+'289': lambda data: [
+	(('AMK_RR_status_bit_{0}'.format(i), 	1 if 1 == hex_to_uint16(get_byte(data, 0) + get_byte(data, 1)) & (2**i) else 0) for i in range(8,16)),
+	('AMK_RR_Actual_velocity',		hex_to_int16(get_byte(2)+get_byte(3))	),
+	('AMK_RR_Torque_current',		hex_to_int16(get_byte(4)+get_byte(5))	),
+	('AMK_RR_Magnetizing_current',		hex_to_int16(get_byte(6)+get_byte(7))	),
+],
+#AMK Actual Values 2
+'28B': lambda data: [
+	('AMK_RR_Temp_Motor',		hex_to_int16(get_byte(0)+get_byte(1))*10.0	),
+	('AMK_RR_Temp_Inverter',		hex_to_int16(get_byte(2)+get_byte(3))*10.0	),		
+	('AMK_RR_Error_info',		hex_to_uint16(get_byte(4)+get_byte(5))		),
+	('AMK_RR_Temp_IGBT',		hex_to_int16(get_byte(6)+get_byte(7))*10.0	),
+],
+
 
 #FAN CONTROL STATUS
 '4B0': lambda data: [
