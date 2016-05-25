@@ -918,10 +918,10 @@
 ],
 #AMK Actual Values 2
 '286': lambda data: [
-	('AMK_FL_Temp_Motor',		hex_to_int16(get_byte(data,0)+get_byte(data,1)) * 10.0	),
-	('AMK_FL_Temp_Inverter',	hex_to_int16(get_byte(data,2)+get_byte(data,3)) * 10.0	),		
+	('AMK_FL_Temp_Motor',		hex_to_int16(get_byte(data,0)+get_byte(data,1)) / 10.0	),
+	('AMK_FL_Temp_Inverter',	hex_to_int16(get_byte(data,2)+get_byte(data,3)) / 10.0	),		
 	('AMK_FL_Error_info',	    hex_to_uint16(get_byte(data,4)+get_byte(data,5))		),
-	('AMK_FL_Temp_IGBT',		hex_to_int16(get_byte(data,6)+get_byte(data,7)) * 10.0	)
+	('AMK_FL_Temp_IGBT',		hex_to_int16(get_byte(data,6)+get_byte(data,7)) / 10.0	)
 ],
 
 #AMK Actual Values 1
@@ -934,10 +934,10 @@
 ],
 #AMK Actual Values 2
 '287': lambda data: [
-	('AMK_FR_Temp_Motor',		hex_to_int16(get_byte(data,0)+get_byte(data,1))*10.0	),
-	('AMK_FR_Temp_Inverter',	hex_to_int16(get_byte(data,2)+get_byte(data,3))*10.0	),		
+	('AMK_FR_Temp_Motor',		hex_to_int16(get_byte(data,0)+get_byte(data,1))/10.0	),
+	('AMK_FR_Temp_Inverter',	hex_to_int16(get_byte(data,2)+get_byte(data,3))/10.0	),		
 	('AMK_FR_Error_info',		hex_to_uint16(get_byte(data,4)+get_byte(data,5))		),
-	('AMK_FR_Temp_IGBT',		hex_to_int16(get_byte(data,6)+get_byte(data,7))*10.0	)
+	('AMK_FR_Temp_IGBT',		hex_to_int16(get_byte(data,6)+get_byte(data,7))/10.0	)
 ],
 
 #AMK Actual Values 1
@@ -950,10 +950,10 @@
 ],
 #AMK Actual Values 2
 '28A': lambda data: [
-	('AMK_RL_Temp_Motor',		hex_to_int16(get_byte(data,0)+get_byte(data,1))*10.0	),
-	('AMK_RL_Temp_Inverter',		hex_to_int16(get_byte(data,2)+get_byte(data,3))*10.0	),		
+	('AMK_RL_Temp_Motor',		hex_to_int16(get_byte(data,0)+get_byte(data,1))/10.0	),
+	('AMK_RL_Temp_Inverter',		hex_to_int16(get_byte(data,2)+get_byte(data,3))/10.0	),		
 	('AMK_RL_Error_info',		hex_to_uint16(get_byte(data,4)+get_byte(data,5))		),
-	('AMK_RL_Temp_IGBT',		hex_to_int16(get_byte(data,6)+get_byte(data,7))*10.0	)
+	('AMK_RL_Temp_IGBT',		hex_to_int16(get_byte(data,6)+get_byte(data,7))/10.0	)
 ],
 
 #AMK Actual Values 1
@@ -966,10 +966,10 @@
 ],
 #AMK Actual Values 2
 '28B': lambda data: [
-	('AMK_RR_Temp_Motor',		hex_to_int16(get_byte(data,0)+get_byte(data,1))*10.0	),
-	('AMK_RR_Temp_Inverter',		hex_to_int16(get_byte(data,2)+get_byte(data,3))*10.0	),		
+	('AMK_RR_Temp_Motor',		hex_to_int16(get_byte(data,0)+get_byte(data,1))/10.0	),
+	('AMK_RR_Temp_Inverter',		hex_to_int16(get_byte(data,2)+get_byte(data,3))/10.0	),		
 	('AMK_RR_Error_info',		hex_to_uint16(get_byte(data,4)+get_byte(data,5))		),
-	('AMK_RR_Temp_IGBT',		hex_to_int16(get_byte(data,6)+get_byte(data,7))*10.0	)
+	('AMK_RR_Temp_IGBT',		hex_to_int16(get_byte(data,6)+get_byte(data,7))/10.0	)
 ],
 
 
