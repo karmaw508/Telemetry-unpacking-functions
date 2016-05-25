@@ -840,7 +840,11 @@
 	('STATUS_ATTITUDE'	 	, hex_to_uint16(get_byte(data, 0) + get_byte(data, 1))),
 	('STATUS_INS'			, int(get_byte(data, 2),16))
 ],
-
+#ECU, FILTERED STEERING WHEEL ANGLE, AND SPEED
+'45F': lambda data: [
+	('ECU_STW_Angle'	 	, hex_to_int16(get_byte(data, 0) + get_byte(data, 1)) * 0.01),
+	('ECU_STW_Speed'		, hex_to_int16(get_byte(data, 2) + get_byte(data, 3)) * 0.01)
+],
 #GLVBMS, VOLTAGES
 '460': lambda data: [
     ('GLV_vtg0'       , int(get_byte(data,1) + get_byte(data,0),16)  / 10000.0), 
