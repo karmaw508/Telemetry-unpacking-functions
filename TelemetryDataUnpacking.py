@@ -841,7 +841,7 @@
 #ECU, ATTITUDE AND INS STATUS
 '45A': lambda data: [
 	('STATUS_ATTITUDE'	 	, hex_to_uint16(get_byte(data, 0) + get_byte(data, 1))),
-	('STATUS_INS'			, get_byte(data, 2))
+	('STATUS_INS'			, int(get_byte(data, 2),8))
 ],
 
 #GLVBMS, VOLTAGES
