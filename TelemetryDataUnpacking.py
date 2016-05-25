@@ -5,8 +5,6 @@
 #hex_to_int32(4ByteMessage)	
 #hex_to_uint32(4ByteMessage)	
 
-
-
 {
 #ADC_sensor_inputs
 '400': lambda data: [
@@ -30,15 +28,15 @@
 ],
 
 '410': lambda data: [
-    ('Steering_position_degrees' , hex_to_int16(get_byte(data, 0) + get_byte(data, 1) )*360.0/4097.0),
+    ('Steering_position_degrees' , hex_to_int16(get_byte(data, 0) + get_byte(data, 1) )*360.0/4097.0)
 ],
 
 '411': lambda data: [
-    ('TPS_left' , hex_to_uint16(get_byte(data, 0) + get_byte(data, 1))/10.0)
+    ('TPS_left' , hex_to_uint16(get_byte(data, 0) + get_byte(data, 1)) / 10.0)
 ],
 
 '412': lambda data: [
-    ('TPS_right' , hex_to_uint16(get_byte(data, 0) + get_byte(data, 1))/10.0)
+    ('TPS_right' , hex_to_uint16(get_byte(data, 0) + get_byte(data, 1)) / 10.0)
 ],
 
 '413': lambda data: [
@@ -981,7 +979,6 @@
 	('Fan_ctrl_mode',		int(get_byte(data,3),16) ),
 	('12V_state',			int(get_byte(data,4),16) )
 ],
-
 
 
 }
