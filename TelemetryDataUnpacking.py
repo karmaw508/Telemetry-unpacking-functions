@@ -818,8 +818,8 @@
 ],
 #ECU GPS LONGITUDE AND LATITUDE
 '456': lambda data: [
-	('GPS_LONGITUDE'	, int(get_byte(data, 0) + get_byte(data, 1) + get_byte(data, 2) + get_byte(data, 3),32) / 1000000.0), 
-	('GPS_LATITUDE'	 	, int(get_byte(data, 4) + get_byte(data, 5) + get_byte(data, 6) + get_byte(data, 7),32) / 1000000.0)
+	('GPS_LONGITUDE'	, int(get_byte(data, 0) + get_byte(data, 1) + get_byte(data, 2) + get_byte(data, 3),16) / 1000000.0), 
+	('GPS_LATITUDE'	 	, int(get_byte(data, 4) + get_byte(data, 5) + get_byte(data, 6) + get_byte(data, 7),16) / 1000000.0)
 ],
 #ECU YAW RATE, YAW ACCELERATION
 '458': lambda data: [
@@ -835,13 +835,13 @@
 ],
 #ECU GPS FIX AND NUMBER OF TRACKED SATELITES
 '45B': lambda data: [
-	('GPS_FIX'	 	, int(get_byte(data, 0), 8)), 
-	('NR_TR_SAT'	, int(get_byte(data, 1), 8))
+	('GPS_FIX'	 	, int(get_byte(data, 0), 16)), 
+	('NR_TR_SAT'	, int(get_byte(data, 1), 16))
 ],
 #ECU, ATTITUDE AND INS STATUS
 '45A': lambda data: [
 	('STATUS_ATTITUDE'	 	, hex_to_uint16(get_byte(data, 0) + get_byte(data, 1))),
-	('STATUS_INS'			, int(get_byte(data, 2),8))
+	('STATUS_INS'			, int(get_byte(data, 2),16))
 ],
 
 #GLVBMS, VOLTAGES
@@ -938,11 +938,11 @@
 
 #FAN CONTROL STATUS
 '4B0': lambda data: [
-	('Battery_fans_dutycycle',	int(get_byte(0),8) ),
-	('Radiator_fans_dutycycle',	int(get_byte(1),8) ),
-	('Pump_state',			int(get_byte(2),8) ),
-	('Fan_ctrl_mode',		int(get_byte(3),8) ),
-	('12V_state',			int(get_byte(4),8) )
+	('Battery_fans_dutycycle',	int(get_byte(data,0),16) ),
+	('Radiator_fans_dutycycle',	int(get_byte(data,1),16) ),
+	('Pump_state',			int(get_byte(data,2),16) ),
+	('Fan_ctrl_mode',		int(get_byte(data,3),16) ),
+	('12V_state',			int(get_byte(data,4),16) )
 ],
 
 
