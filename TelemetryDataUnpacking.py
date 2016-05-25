@@ -938,11 +938,11 @@
 
 #FAN CONTROL STATUS
 '4B0': lambda data: [
-	('Battery_fans_dutycycle',	int(get_byte(0)) ),
-	('Radiator_fans_dutycycle',	int(get_byte(1)) ),
-	('Pump_state',			int(get_byte(2)) ),
-	('Fan_ctrl_mode',		int(get_byte(3)) ),
-	('12V_state',			int(get_byte(4)) ),
+	('Battery_fans_dutycycle',	int(get_byte(0),8) ),
+	('Radiator_fans_dutycycle',	int(get_byte(1),8) ),
+	('Pump_state',			int(get_byte(2),8) ),
+	('Fan_ctrl_mode',		int(get_byte(3),8) ),
+	('12V_state',			int(get_byte(4),8) )
 ],
 
 
