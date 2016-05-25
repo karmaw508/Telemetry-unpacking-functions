@@ -853,29 +853,29 @@
 ],
 '461': lambda data: [
     ('GLV_vtg4'       , int(get_byte(data,1) + get_byte(data,0),16)  / 10000.0), 
-    ('GLV_vtg5'       , int(get_byte(data,3) + get_byte(data,2),16)  / 10000.0),
+    ('GLV_vtg5'       , int(get_byte(data,3) + get_byte(data,2),16)  / 10000.0)
 ],
 
 '462': lambda data: [
     ('GLV_tmp0'       , int(get_byte(data,1) + get_byte(data,0),16)  / 100.0), 
     ('GLV_vmp1'       , int(get_byte(data,3) + get_byte(data,2),16)  / 100.0),
     ('GLV_tmp2'       , int(get_byte(data,5) + get_byte(data,4),16)  / 100.0),
-    ('GLV_tmp3'       , int(get_byte(data,7) + get_byte(data,6),16)  / 100.0),
+    ('GLV_tmp3'       , int(get_byte(data,7) + get_byte(data,6),16)  / 100.0)
 ],
 '463': lambda data: [
-    ('GLV_tmp4'       , int(get_byte(data,1) + get_byte(data,0),16)  / 100.0), 
+    ('GLV_tmp4'       , int(get_byte(data,1) + get_byte(data,0),16)  / 100.0)
 ],
 
 '465': lambda data: [
     ('GLV_minVtg'       , int(get_byte(data,1) + get_byte(data,0),16)  / 10000.0), 
     ('GLV_maxVtg'       , int(get_byte(data,3) + get_byte(data,2),16)  / 10000.0),
-    ('GLV_totVtg'       , int( get_byte(data,7) + get_byte(data,6) + get_byte(data,5) + get_byte(data,4), 16) / 10000.0 ),
+    ('GLV_totVtg'       , int( get_byte(data,7) + get_byte(data,6) + get_byte(data,5) + get_byte(data,4), 16) / 10000.0 )
 ],
 
 '466': lambda data: [
     ('GLV_minTemp'       , int(get_byte(data,1) + get_byte(data,0),16)  / 100.0),
     ('GLV_maxTemp'       , int(get_byte(data,3) + get_byte(data,2),16)  / 100.0),
-    ('GLV_current'       , int(get_byte(data,7) + get_byte(data,6),16)  / 1000.0),
+    ('GLV_current'       , int(get_byte(data,7) + get_byte(data,6),16)  / 1000.0)
 ],
 
 #AMK INVERTERS
@@ -886,45 +886,43 @@
 	('AMK_FL_control',			hex_to_uint16(get_byte(0)+get_byte(1))	),
 	('AMK_FL_RPM_setpoint',		hex_to_int16(get_byte(2)+get_byte(3))	),
 	('AMK_FL_torque_pos',		hex_to_int16(get_byte(4)+get_byte(5)) / 100.0	),
-	('AMK_FL_torque_neg',		hex_to_int16(get_byte(6)+get_byte(7)) / 100.0	),
+	('AMK_FL_torque_neg',		hex_to_int16(get_byte(6)+get_byte(7)) / 100.0	)
 ],
 
 '186': lambda data: [
 	('AMK_FR_control',			hex_to_uint16(get_byte(0)+get_byte(1))	),
 	('AMK_FR_RPM_setpoint',		hex_to_int16(get_byte(2)+get_byte(3))	),
 	('AMK_FR_torque_pos',		hex_to_int16(get_byte(4)+get_byte(5)) / 100.0	),
-	('AMK_FR_torque_neg',		hex_to_int16(get_byte(6)+get_byte(7)) / 100.0	),
+	('AMK_FR_torque_neg',		hex_to_int16(get_byte(6)+get_byte(7)) / 100.0	)
 ],
 
 '189': lambda data: [
 	('AMK_RL_control',			hex_to_uint16(get_byte(0)+get_byte(1))	),
 	('AMK_RL_RPM_setpoint',		hex_to_int16(get_byte(2)+get_byte(3))	),
 	('AMK_RL_torque_pos',		hex_to_int16(get_byte(4)+get_byte(5)) / 100.0	),
-	('AMK_RL_torque_neg',		hex_to_int16(get_byte(6)+get_byte(7)) / 100.0	),
+	('AMK_RL_torque_neg',		hex_to_int16(get_byte(6)+get_byte(7)) / 100.0	)
 ],
 
 '19A': lambda data: [
 	('AMK_RR_control',			hex_to_uint16(get_byte(0)+get_byte(1))	),
 	('AMK_RR_RPM_setpoint',		hex_to_int16(get_byte(2)+get_byte(3))	),
 	('AMK_RR_torque_pos',		hex_to_int16(get_byte(4)+get_byte(5)) / 100.0	),
-	('AMK_RR_torque_neg',		hex_to_int16(get_byte(6)+get_byte(7)) / 100.0	),
+	('AMK_RR_torque_neg',		hex_to_int16(get_byte(6)+get_byte(7)) / 100.0	)
 ],
-
-
 #AMK Actual Values 1
 '284': lambda data: [
 	#(('AMK_FL_status_bit_{0}'.format(i), 	1 if 1 == hex_to_uint16(get_byte(data, 0) + get_byte(data, 1)) & (2**i) else 0) for i in range(8,16)),
-	('AMK_FL_STATUS',				hex_to_uint16(get_byte(0)+get_byte(1))	),
-	('AMK_FL_Actual_velocity',		hex_to_int16(get_byte(2)+get_byte(3))	),
-	('AMK_FL_Torque_current',		hex_to_int16(get_byte(4)+get_byte(5))	),
+	('AMK_FL_STATUS',					hex_to_uint16(get_byte(0)+get_byte(1))	),
+	('AMK_FL_Actual_velocity',			hex_to_int16(get_byte(2)+get_byte(3))	),
+	('AMK_FL_Torque_current',			hex_to_int16(get_byte(4)+get_byte(5))	),
 	('AMK_FL_Magnetizing_current',		hex_to_int16(get_byte(6)+get_byte(7))	)
 ],
 #AMK Actual Values 2
 '286': lambda data: [
-	('AMK_FL_Temp_Motor',		hex_to_int16(get_byte(0)+get_byte(1))*10.0	),
-	('AMK_FL_Temp_Inverter',		hex_to_int16(get_byte(2)+get_byte(3))*10.0	),		
+	('AMK_FL_Temp_Motor',		hex_to_int16(get_byte(0)+get_byte(1)) * 10.0	),
+	('AMK_FL_Temp_Inverter',		hex_to_int16(get_byte(2)+get_byte(3)) * 10.0	),		
 	('AMK_FL_Error_info',		hex_to_uint16(get_byte(4)+get_byte(5))		),
-	('AMK_FL_Temp_IGBT',		hex_to_int16(get_byte(6)+get_byte(7))*10.0	)
+	('AMK_FL_Temp_IGBT',		hex_to_int16(get_byte(6)+get_byte(7)) * 10.0	)
 ],
 
 #AMK Actual Values 1
