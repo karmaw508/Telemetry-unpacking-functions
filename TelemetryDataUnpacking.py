@@ -912,8 +912,8 @@
 ],
 #AMK Actual Values 1
 '284': lambda data: [
-	(('AMK_FL_status_bit_{0}'.format(i), 	1 if 1 == hex_to_uint16(get_byte(data, 0) + get_byte(data, 1)) & (2**i) else 0) for i in range(8,16)),
-	#('AMK_FL_STATUS',					hex_to_uint16(get_byte(data,0)+get_byte(data,1))	),
+	#(('AMK_FL_status_bit_{0}'.format(i), 	1 if 1 == hex_to_uint16(get_byte(data, 0) + get_byte(data, 1)) & (2**i) else 0) for i in range(8,16)),
+	('AMK_FL_STATUS',					hex_to_uint16(get_byte(data,0)+get_byte(data,1))	),
 	('AMK_FL_Actual_velocity',			hex_to_int16(get_byte(data,2)+get_byte(data,3))	),
 	('AMK_FL_Torque_current',			hex_to_int16(get_byte(data,4)+get_byte(data,5)) * 0.0067),
 	('AMK_FL_Magnetizing_current',		hex_to_int16(get_byte(data,6)+get_byte(data,7))	* 0.0067),
@@ -929,8 +929,8 @@
 
 #AMK Actual Values 1
 '285': lambda data: [
-	(('AMK_FR_status_bit_{0}'.format(i), 	1 if 1 == hex_to_uint16(get_byte(data, 0) + get_byte(data, 1)) & (2**i) else 0) for i in range(8,16)),
-	#('AMK_FR_STATUS',				hex_to_uint16(get_byte(data,0)+get_byte(data,1))	),
+	#(('AMK_FR_status_bit_{0}'.format(i), 	1 if 1 == hex_to_uint16(get_byte(data, 0) + get_byte(data, 1)) & (2**i) else 0) for i in range(8,16)),
+	('AMK_FR_STATUS',				hex_to_uint16(get_byte(data,0)+get_byte(data,1))	),
 	('AMK_FR_Actual_velocity',		hex_to_int16(get_byte(data,2)+get_byte(data,3))	),
 	('AMK_FR_Torque_current',			hex_to_int16(get_byte(data,4)+get_byte(data,5)) * 0.0067),
 	('AMK_FR_Magnetizing_current',		hex_to_int16(get_byte(data,6)+get_byte(data,7))	* 0.0067),
@@ -946,8 +946,8 @@
 
 #AMK Actual Values 1
 '288': lambda data: [
-	(('AMK_RL_status_bit_{0}'.format(i), 	1 if 1 == hex_to_uint16(get_byte(data, 0) + get_byte(data, 1)) & (2**i) else 0) for i in range(8,16)),
-	#('AMK_RL_STATUS',				hex_to_uint16(get_byte(data,0)+get_byte(data,1))	),
+	#(('AMK_RL_status_bit_{0}'.format(i), 	1 if 1 == hex_to_uint16(get_byte(data, 0) + get_byte(data, 1)) & (2**i) else 0) for i in range(8,16)),
+	('AMK_RL_STATUS',				hex_to_uint16(get_byte(data,0)+get_byte(data,1))	),
 	('AMK_RL_Actual_velocity',		hex_to_int16(get_byte(data,2)+get_byte(data,3))	),
 	('AMK_RL_Torque_current',			hex_to_int16(get_byte(data,4)+get_byte(data,5)) * 0.0067),
 	('AMK_RL_Magnetizing_current',		hex_to_int16(get_byte(data,6)+get_byte(data,7))	* 0.0067),
@@ -963,8 +963,8 @@
 
 #AMK Actual Values 1
 '289': lambda data: [
-	(('AMK_RR_status_bit_{0}'.format(i), 	1 if 1 == hex_to_uint16(get_byte(data, 0) + get_byte(data, 1)) & (2**i) else 0) for i in range(8,16)),
-	#('AMK_RR_STATUS',				hex_to_uint16(get_byte(data,0)+get_byte(data,1))	),
+	#(('AMK_RR_status_bit_{0}'.format(i), 	1 if 1 == hex_to_uint16(get_byte(data, 0) + get_byte(data, 1)) & (2**i) else 0) for i in range(8,16)),
+	('AMK_RR_STATUS',				hex_to_uint16(get_byte(data,0)+get_byte(data,1))	),
 	('AMK_RR_Actual_velocity',		hex_to_int16(get_byte(data,2)+get_byte(data,3))	),
 	('AMK_RR_Torque_current',			hex_to_int16(get_byte(data,4)+get_byte(data,5)) * 0.0067),
 	('AMK_RR_Magnetizing_current',		hex_to_int16(get_byte(data,6)+get_byte(data,7))	* 0.0067),
