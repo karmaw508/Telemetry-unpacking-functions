@@ -904,7 +904,7 @@
 	('AMK_RL_torque_neg',		hex_to_int16(get_byte(data,6)+get_byte(data,7)) / 100.0	)
 ],
 
-'19A': lambda data: [
+'18A': lambda data: [
 	('AMK_RR_control',			hex_to_uint16(get_byte(data,0)+get_byte(data,1))	),
 	('AMK_RR_RPM_setpoint',		hex_to_int16(get_byte(data,2)+get_byte(data,3))	),
 	('AMK_RR_torque_pos',		hex_to_int16(get_byte(data,4)+get_byte(data,5)) / 100.0	),
