@@ -769,7 +769,15 @@
 '190': lambda data: [
     ('R16[1]_parameter_{0}'.format(int(get_byte(data, 0), 16)), int(get_byte(data, 2) + get_byte(data, 3), 16))
 ],
-#
+
+#SF II
+'3D0': lambda data: [
+	('OPTICAL_VX'	 , hex_to_int16(get_byte(data, 0) + get_byte(data, 1)) / 100.0), 
+	('OPTICAL_VY'	 , hex_to_int16(get_byte(data, 2) + get_byte(data, 3)) / 100.0),
+	('OPTICAL_SA'	 , hex_to_int16(get_byte(data, 4) + get_byte(data, 5)) / 100.0)
+],
+
+
 #ECU Messages
 #ECU SLIP RATIOS
 '451': lambda data: [
