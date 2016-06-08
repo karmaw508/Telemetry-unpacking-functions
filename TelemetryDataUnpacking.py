@@ -778,6 +778,13 @@
 	('SR_RL'	 , hex_to_int16(get_byte(data, 4) + get_byte(data, 5)) / 1000.0),
 	('SR_RR'	 , hex_to_int16(get_byte(data, 6) + get_byte(data, 7)) / 1000.0)
 ],
+#ECU FX/FZ = normalized traction force
+'452': lambda data: [
+	('FX_DIV_FZ_FL'	 , hex_to_int16(get_byte(data, 0) + get_byte(data, 1)) / 10.0), 
+	('FX_DIV_FZ_FR'	 , hex_to_int16(get_byte(data, 2) + get_byte(data, 3)) / 10.0),
+	('FX_DIV_FZ_RL'	 , hex_to_int16(get_byte(data, 4) + get_byte(data, 5)) / 10.0),
+	('FX_DIV_FZ_RR'	 , hex_to_int16(get_byte(data, 6) + get_byte(data, 7)) / 10.0)
+],
 #ECU DAMPER ESTIMATED NORMAL FORCES
 '453': lambda data: [
 	('FZ_DAMPER_FL'	 , hex_to_int16(get_byte(data, 0) + get_byte(data, 1)) / 10.0), 
