@@ -849,8 +849,8 @@
 ],
 #ECU, FILTERED STEERING WHEEL ANGLE, AND SPEED
 '45F': lambda data: [
-	('ECU_STW_Angle'	 	, hex_to_int16(get_byte(data, 0) + get_byte(data, 1)) * 0.001),
-	('ECU_STW_Speed'		, hex_to_int16(get_byte(data, 2) + get_byte(data, 3)) * 0.01)
+	('ECU_STW_Angle'	 	, hex_to_int16(get_byte(data, 0) + get_byte(data, 1)) * 0.0573),
+	('ECU_STW_Speed'		, hex_to_int16(get_byte(data, 2) + get_byte(data, 3)) * 0.573)
 ],
 #GLVBMS, VOLTAGES
 '460': lambda data: [
