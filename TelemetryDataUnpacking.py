@@ -137,6 +137,10 @@
 '443': lambda data: [
 	('BMS_Error_Flags',			hex_to_uint16(get_byte(data, 0) + get_byte(data, 1)))
 ],
+'445': lambda data: [
+	('Power',					hex_to_int16(get_byte(data, 0) + get_byte(data, 1)) * 10.0),
+	('Voltage_SOC',				hex_to_int16(get_byte(data, 2) + get_byte(data, 3)) * 0.1)
+],
 
 '500': lambda data: [
 	('BMS_Cell_Voltage_0',		hex_to_uint16(get_byte(data, 0) + get_byte(data, 1)) * 0.0001),
