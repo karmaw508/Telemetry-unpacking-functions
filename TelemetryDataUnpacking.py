@@ -842,8 +842,8 @@
 ],
 #ECU GPS LONGITUDE AND LATITUDE
 '456': lambda data: [
-	('GPS_LONGITUDE'	, int(get_byte(data, 0) + get_byte(data, 1) + get_byte(data, 2) + get_byte(data, 3),16) / 1000000.0), 
-	('GPS_LATITUDE'	 	, int(get_byte(data, 4) + get_byte(data, 5) + get_byte(data, 6) + get_byte(data, 7),16) / 1000000.0)
+	('GPS_LONGITUDE'	, hex_to_int32(get_byte(data, 0) + get_byte(data, 1) + get_byte(data, 2) + get_byte(data, 3)) / 1000000.0), 
+	('GPS_LATITUDE'	 	, hex_to_int32(get_byte(data, 4) + get_byte(data, 5) + get_byte(data, 6) + get_byte(data, 7)) / 1000000.0)
 ],
 #ECU YAW RATE, YAW ACCELERATION
 '458': lambda data: [
