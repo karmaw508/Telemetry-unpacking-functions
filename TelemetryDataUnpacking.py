@@ -6,6 +6,14 @@
 #hex_to_uint32(4ByteMessage)	
 
 {
+
+#IMD 
+'490': lambda data: [
+    ('IMD_SHUTDOWN' ,  int(get_byte(data, 0), 16))
+],
+'491': lambda data: [
+    ('IMD_STATE' , int(get_byte(data, 0), 16))
+],
 #ADC_sensor_inputs
 '400': lambda data: [
     ('Damper_position_FL' , hex_to_uint16(get_byte(data, 0) + get_byte(data, 1))/10.0),
