@@ -791,6 +791,19 @@
 
 
 #ECU Messages
+
+'354': lambda data: [
+	('DAMPER_POS_SMOOTH_FL'	 , hex_to_uint16(get_byte(data, 0) + get_byte(data, 1)) / 10.0), 
+	('DAMPER_POS_SMOOTH_FR'	 , hex_to_uint16(get_byte(data, 2) + get_byte(data, 3)) / 10.0),
+	('DAMPER_POS_SMOOTH_RL'	 , hex_to_uint16(get_byte(data, 4) + get_byte(data, 5)) / 10.0),
+	('DAMPER_POS_SMOOTH_RR'	 , hex_to_uint16(get_byte(data, 6) + get_byte(data, 7)) / 10.0)
+],
+'355': lambda data: [
+	('DAMPER_RATE_SMOOTH_FL'	 , hex_to_int16(get_byte(data, 0) + get_byte(data, 1)) / 10.0), 
+	('DAMPER_RATE_SMOOTH_FR'	 , hex_to_int16(get_byte(data, 2) + get_byte(data, 3)) / 10.0),
+	('DAMPER_RATE_SMOOTH_RL'	 , hex_to_int16(get_byte(data, 4) + get_byte(data, 5)) / 10.0),
+	('DAMPER_RATE_SMOOTH_RR'	 , hex_to_int16(get_byte(data, 6) + get_byte(data, 7)) / 10.0)
+],
 #ECU SLIP RATIOS
 '451': lambda data: [
 	('SR_FL'	 , hex_to_int16(get_byte(data, 0) + get_byte(data, 1)) / 1000.0), 
