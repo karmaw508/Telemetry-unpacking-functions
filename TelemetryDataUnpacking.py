@@ -16,23 +16,19 @@
 ],
 #ADC_sensor_inputs
 '400': lambda data: [
-    ('Damper_position_FL' , hex_to_uint16(get_byte(data, 0) + get_byte(data, 1))/10.0),
-    ('Damper_rate_FL' , hex_to_int16(get_byte(data, 2) + get_byte(data, 3) )/10.0),
+    ('Raw_Damper_position_FL' , hex_to_uint16(get_byte(data, 0) + get_byte(data, 1))/10.0)
 ],
 
 '401': lambda data: [
-    ('Damper_position_FR' , hex_to_uint16(get_byte(data, 0) + get_byte(data, 1))/10.0),
-    ('Damper_rate_FR' , hex_to_int16(get_byte(data, 2) + get_byte(data, 3) )/10.0),
+    ('Raw_Damper_position_FR' , hex_to_uint16(get_byte(data, 0) + get_byte(data, 1))/10.0)
 ],
 
 '402': lambda data: [
-    ('Damper_position_RL' , hex_to_uint16(get_byte(data, 0) + get_byte(data, 1))/10.0),
-    ('Damper_rate_RL' , hex_to_int16(get_byte(data, 2) + get_byte(data, 3) )/10.0),
+    ('Raw_Damper_position_RL' , hex_to_uint16(get_byte(data, 0) + get_byte(data, 1))/10.0)
 ],
 
 '403': lambda data: [
-    ('Damper_position_RR' , hex_to_uint16(get_byte(data, 0) + get_byte(data, 1))/10.0),
-    ('Damper_rate_RR' , hex_to_int16(get_byte(data, 2) + get_byte(data, 3))/10.0),
+    ('Raw_Damper_position_RR' , hex_to_uint16(get_byte(data, 0) + get_byte(data, 1))/10.0)
 ],
 
 '410': lambda data: [
