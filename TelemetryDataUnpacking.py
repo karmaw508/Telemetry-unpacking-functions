@@ -800,6 +800,10 @@
 	('DAMPER_RATE_SMOOTH_RL'	 , hex_to_int16(get_byte(data, 4) + get_byte(data, 5)) / 10.0),
 	('DAMPER_RATE_SMOOTH_RR'	 , hex_to_int16(get_byte(data, 6) + get_byte(data, 7)) / 10.0)
 ],
+'356': lambda data: [
+	('ECU_THROTTLE_DEBUG'	 , int(get_byte(data, 0),16) )
+],
+
 '450': lambda data: [
 	('ECU_STATUS'	 , hex_to_uint32(get_byte(data, 0) + get_byte(data, 1) + get_byte(data, 2) +get_byte(data, 3)) )
 ],
