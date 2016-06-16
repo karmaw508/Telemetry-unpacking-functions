@@ -71,7 +71,7 @@
 ],
 #BSPD - Trigger ( data uint8_t == 0 means that BSPD has trigged ).
 '480': lambda data: [
-    ('BSPD_trigger' , int(get_byte(data, 0), 8))
+    ('BSPD_trigger' , int(get_byte(data, 0), 16))
 ],
 #GLVBMS
 #Mikael Kvalvær
