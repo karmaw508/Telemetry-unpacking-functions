@@ -803,6 +803,9 @@
 '356': lambda data: [
 	('ECU_THROTTLE_DEBUG'	 , int(get_byte(data, 0),16) )
 ],
+'357': lambda data: [
+	('ECU_SAFETY_QUEUE_COUNTER'	 , hex_to_uint32(get_byte(data, 0) + get_byte(data, 1) + get_byte(data, 2) + get_byte(data, 3)) )
+],
 
 '450': lambda data: [
 	('ECU_STATUS'	 , hex_to_uint32(get_byte(data, 0) + get_byte(data, 1) + get_byte(data, 2) +get_byte(data, 3)) )
