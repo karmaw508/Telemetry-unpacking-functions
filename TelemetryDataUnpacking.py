@@ -66,8 +66,8 @@
 ],
 
 '414': lambda data: [
-    ('Brake_pressure_left' , int(get_byte(data, 0), 16)  / 10.0),
-    ('Brake_pressure_right' , int(get_byte(data, 1), 16) /10.0)
+    ('Brake_pressure_left' , int(get_byte(data, 0), 16) ),
+    ('Brake_pressure_right' , int(get_byte(data, 1), 16))
 ],
 #BSPD - Trigger ( data uint8_t == 0 means that BSPD has trigged ).
 '480': lambda data: [
