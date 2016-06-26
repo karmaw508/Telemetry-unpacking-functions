@@ -15,6 +15,12 @@
     ('IMD_STATE' , int(get_byte(data, 0), 16))
 ],
 #ADC_sensor_inputs
+
+'310': lambda data: [
+    ('TPS_right' , hex_to_uint16(get_byte(data, 0) + get_byte(data, 1)) / 10.0)
+	('TPS_left' , hex_to_uint16(get_byte(data, 1) + get_byte(data, 2)) / 10.0)
+],
+
 '400': lambda data: [
     ('Raw_Damper_position_FL' , hex_to_uint16(get_byte(data, 0) + get_byte(data, 1))/10.0)
 ],
