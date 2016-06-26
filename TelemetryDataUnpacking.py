@@ -18,7 +18,7 @@
 
 '310': lambda data: [
     ('TPS_right' , hex_to_uint16(get_byte(data, 0) + get_byte(data, 1)) / 10.0)
-	('TPS_left' , hex_to_uint16(get_byte(data, 1) + get_byte(data, 2)) / 10.0)
+	('TPS_left' , hex_to_uint16(get_byte(data, 2) + get_byte(data, 3)) / 10.0)
 ],
 
 '400': lambda data: [
