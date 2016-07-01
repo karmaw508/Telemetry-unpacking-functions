@@ -691,6 +691,9 @@
 '35B': lambda data: [
 	('ECU_TPS_R'	 , hex_to_uint16(get_byte(data, 0) + get_byte(data, 1)) / 10.0 )
 ],
+'35C': lambda data: [
+	('ECU_ALFA_R'	 , hex_to_uint16(get_byte(data, 0) + get_byte(data, 1)) / 100.0 )
+],
 '450': lambda data: [
 	('ECU_STATUS'	 , hex_to_uint32(get_byte(data, 0) + get_byte(data, 1) + get_byte(data, 2) +get_byte(data, 3)) )
 ],
