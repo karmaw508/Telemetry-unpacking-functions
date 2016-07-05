@@ -872,7 +872,7 @@
 
 #ECU CONTROL SYSTEM VALUES
 '455': lambda data: [
-	('Mz_reference'	 , hex_to_int16(get_byte(data, 0) + get_byte(data, 1)) / 100.0), 
+	('Mz_reference'	 , hex_to_int16(get_byte(data, 0) + get_byte(data, 1)) / 10.0), 
 	('Yaw_rate_ref'	 , hex_to_int16(get_byte(data, 2) + get_byte(data, 3)) / 100.0)
 ],
 #ECU GPS LONGITUDE AND LATITUDE
@@ -888,7 +888,7 @@
 #ECU ACCELERATIONS, INS Vx and Vy
 '459': lambda data: [
 	('Ax'	 	, hex_to_int16(get_byte(data, 0) + get_byte(data, 1)) / 100.0), 
-	('Ay'		, hex_to_int16(get_byte(data, 2) + get_byte(data, 3)) / 100.0),
+	('Ay'		, -hex_to_int16(get_byte(data, 2) + get_byte(data, 3)) / 100.0),
 	('INS_Vx'	, hex_to_int16(get_byte(data, 4) + get_byte(data, 5)) / 100.0),
 	('INS_Vy'	, hex_to_int16(get_byte(data, 6) + get_byte(data, 7)) / 100.0)
 ],
