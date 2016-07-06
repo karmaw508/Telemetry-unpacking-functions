@@ -1045,6 +1045,10 @@
 	('12V_state',			int(get_byte(data,4),16) )
 ],
 
+#BRAKE LIGHT FAULT 
+'4B1': lambda data: [
+	('Number_of_brake_light_faults', int(get_byte(data,0),16) )
+],
 
 }
 
